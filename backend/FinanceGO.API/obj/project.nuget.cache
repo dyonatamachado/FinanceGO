@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "n2T5G75FK/YvtyUA1dZ1l1tPrlj0TjMm+kMXKo4c/fJKzVPfYpn0d+UyBkL1u7mUyxTQigm4JrQ6tN7GFPtZaw==",
+  "success": true,
+  "projectFilePath": "/home/dyonata/FinanceGO/backend/FinanceGO.API/FinanceGO.API.csproj",
+  "expectedPackageFiles": [
+    "/home/dyonata/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/dyonata/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/dyonata/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/home/dyonata/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/home/dyonata/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/home/dyonata/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
