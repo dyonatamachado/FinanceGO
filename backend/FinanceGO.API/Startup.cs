@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FinanceGO.API.ServiceExtensions;
+using FinanceGO.Application.Commands.DespesaCommands.CreateDespesa;
 using FinanceGO.Infrastructure.Persistence;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +32,10 @@ namespace FinanceGO.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<FinanceGODbContext>(options => options.UseInMemoryDatabase("FinanceGO"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddRepositories();
             services.AddControllers();
+            services.AddMediatR(typeof(CreateDespesaCommand));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FinanceGO.API", Version = "v1" });
