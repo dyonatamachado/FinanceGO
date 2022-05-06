@@ -30,16 +30,17 @@ namespace FinanceGO.API.Controllers
                 return BadRequest("Já existe despesa com a mesma descrição cadastrada neste mês");
             else if(resultado is CriadoComSucessoResult)
             {
-                var despesaViewModel = resultado.Value as DespesaViewModel;
+                var despesaViewModel = (DespesaViewModel)resultado.Value;
                 return CreatedAtAction(nameof(ReadDespesaById), new { Id = despesaViewModel.Id}, despesaViewModel); 
             }
             else
                 return BadRequest();
         }
 
-        private object ReadDespesaById()
+        [HttpGet("{id}")]
+        public object ReadDespesaById(int id)
         {
-            throw new NotImplementedException();
+            return Ok();
         }
     }
 }

@@ -1,0 +1,12 @@
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/bin/Debug/net5.0/FinanceGO.Core.deps.json
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/bin/Debug/net5.0/FinanceGO.Core.dll
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/bin/Debug/net5.0/ref/FinanceGO.Core.dll
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/bin/Debug/net5.0/FinanceGO.Core.pdb
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.csprojAssemblyReference.cache
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.AssemblyInfoInputs.cache
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.AssemblyInfo.cs
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.csproj.CoreCompileInputs.cache
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.dll
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/ref/FinanceGO.Core.dll
+/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.pdb

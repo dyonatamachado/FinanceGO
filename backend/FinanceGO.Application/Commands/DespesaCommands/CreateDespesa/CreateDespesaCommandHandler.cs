@@ -27,8 +27,11 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
 
         public async Task<Result> Handle(CreateDespesaCommand request, CancellationToken cancellationToken)
         {
-            var possivelDespesaDuplicada = await _despesaQueryRepository
-                .ReadDespesaByMonthAsync(request.Data.Month, request.Data.Year);
+            var possivelDespesaDuplicada = await _despesaQueryRepository.ReadDespesaByMonth(
+                request.Data.Month, 
+                request.Data.Year, 
+                request.Descricao
+            );
 
             if(possivelDespesaDuplicada != null)
                 return new RegistroDuplicadoResult();
