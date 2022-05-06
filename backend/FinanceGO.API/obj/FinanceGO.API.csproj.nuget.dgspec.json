@@ -25,7 +25,14 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj": {
+                "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj"
+              },
+              "/home/dyonata/FinanceGO/backend/FinanceGO.Infrastructure/FinanceGO.Infrastructure.csproj": {
+                "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Infrastructure/FinanceGO.Infrastructure.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -38,6 +45,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[5.0.16, )"
@@ -61,6 +76,182 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj",
+        "projectName": "FinanceGO.Application",
+        "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj",
+        "packagesPath": "/home/dyonata/.nuget/packages/",
+        "outputPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/dyonata/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj": {
+                "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj",
+        "projectName": "FinanceGO.Core",
+        "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj",
+        "packagesPath": "/home/dyonata/.nuget/packages/",
+        "outputPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/dyonata/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/dyonata/FinanceGO/backend/FinanceGO.Infrastructure/FinanceGO.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/dyonata/FinanceGO/backend/FinanceGO.Infrastructure/FinanceGO.Infrastructure.csproj",
+        "projectName": "FinanceGO.Infrastructure",
+        "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Infrastructure/FinanceGO.Infrastructure.csproj",
+        "packagesPath": "/home/dyonata/.nuget/packages/",
+        "outputPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/dyonata/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj": {
+                "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.16, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
