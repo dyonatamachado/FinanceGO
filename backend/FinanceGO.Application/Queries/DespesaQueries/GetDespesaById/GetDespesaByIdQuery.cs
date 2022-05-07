@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using FinanceGO.Application.ViewModels;
 using MediatR;
 
-namespace FinanceGO.Application.Queries.DespesaQueries.ReadDespesaById
+namespace FinanceGO.Application.Queries.DespesaQueries.GetDespesaById
 {
-    public class ReadDespesaByIdQuery : IRequest<DespesaViewModel>
+    public class GetDespesaByIdQuery : IRequest<DespesaViewModel>
     {
-        public ReadDespesaByIdQuery(int id)
+        public GetDespesaByIdQuery(int id)
         {
             Id = id;
         }

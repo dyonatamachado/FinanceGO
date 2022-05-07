@@ -5,24 +5,23 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using FinanceGO.Application.ViewModels;
-using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.DespesaRepositories;
 using MediatR;
 
-namespace FinanceGO.Application.Queries.DespesaQueries.ReadDespesaById
+namespace FinanceGO.Application.Queries.DespesaQueries.GetDespesaById
 {
-    public class ReadDespesaByIdQueryHandler : IRequestHandler<ReadDespesaByIdQuery, DespesaViewModel>
-    {
-        private readonly IMapper _mapper;
+    public class GetDespesaByIdQueryHandler : IRequestHandler<GetDespesaByIdQuery, DespesaViewModel>
+    {   
         private readonly IDespesaQueryRepository _queryRepository;
+        private readonly IMapper _mapper;
 
-        public ReadDespesaByIdQueryHandler(IMapper mapper, IDespesaQueryRepository queryRepository)
+        public GetDespesaByIdQueryHandler(IDespesaQueryRepository queryRepository, IMapper mapper)
         {
-            _mapper = mapper;
             _queryRepository = queryRepository;
+            _mapper = mapper;
         }
 
-        public async Task<DespesaViewModel> Handle(ReadDespesaByIdQuery request, CancellationToken cancellationToken)
+        public async Task<DespesaViewModel> Handle(GetDespesaByIdQuery request, CancellationToken cancellationToken)
         {
             var despesa = await _queryRepository.GetDespesaByIdAsync(request.Id);
 
