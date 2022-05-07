@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using FinanceGO.API.ServiceExtensions;
 using FinanceGO.Application.Commands.DespesaCommands.CreateDespesa;
@@ -34,7 +35,7 @@ namespace FinanceGO.API
             services.AddDbContext<FinanceGODbContext>(options => options.UseInMemoryDatabase("FinanceGO"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddRepositories();
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddMediatR(typeof(CreateDespesaCommand));
             services.AddSwaggerGen(c =>
             {
