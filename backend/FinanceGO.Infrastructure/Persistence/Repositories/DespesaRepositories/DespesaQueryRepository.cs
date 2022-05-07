@@ -17,15 +17,21 @@ namespace FinanceGO.Infrastructure.Persistence.Repositories.DespesaRepositories
             _context = context;
         }
 
-        public async Task<Despesa> ReadDespesaByMonth(int mes, int ano, string descricao)
+        public async Task<Despesa> GetDespesaByIdAsync(int id)
         {
-            var despesa = await _context.Despesas.SingleOrDefaultAsync(
-                d => d.Data.Month == mes &&
-                d.Data.Year == ano &&
-                d.Descricao == descricao
-            );
+            return await _context.Despesas.SingleOrDefaultAsync(d => d.Id == id);
+        }
 
-            return despesa;
+        public async Task<List<Despesa>> GetDespesasAsync()
+        {
+            return await _context.Despesas.ToListAsync();
+        }
+
+        public async Task<List<Despesa>> GetDespesasByMonthAsync(int mes, int ano)
+        {
+            return await _context.Despesas
+                .Where(d => d.Data.Month == mes && d.Data.Year == ano)
+                .ToListAsync();
         }
     }
 }

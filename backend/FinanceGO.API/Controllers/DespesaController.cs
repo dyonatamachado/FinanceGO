@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FinanceGO.Application.Commands.DespesaCommands.CreateDespesa;
+using FinanceGO.Application.Queries.DespesaQueries.ReadDespesaById;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Results;
 using MediatR;
@@ -21,6 +22,19 @@ namespace FinanceGO.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ReadDespesaById(int id)
+        {
+            var query = new ReadDespesaByIdQuery(id);
+
+            var despesa = await _mediator.Send(query);
+            
+            if(despesa == null)
+                return NotFound();
+                
+            return Ok(despesa);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateDespesa(CreateDespesaCommand command)
         {
@@ -37,10 +51,6 @@ namespace FinanceGO.API.Controllers
                 return BadRequest();
         }
 
-        [HttpGet("{id}")]
-        public object ReadDespesaById(int id)
-        {
-            return Ok();
-        }
+
     }
 }

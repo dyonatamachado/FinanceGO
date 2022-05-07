@@ -14,33 +14,16 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
 {
     public class CreateDespesaCommandHandler : IRequestHandler<CreateDespesaCommand, Result>
     {
-        private readonly IDespesaCommandRepository _despesaCommandRepository;
-        private readonly IDespesaQueryRepository _despesaQueryRepository;
+        private readonly IDespesaCommandRepository _commandRepository;
+        private readonly IDespesaQueryRepository _queryRepository;
         private readonly IMapper _mapper;
 
-        public CreateDespesaCommandHandler(IDespesaCommandRepository despesaCommandRepository, IMapper mapper, IDespesaQueryRepository despesaQueryRepository)
+        public CreateDespesaCommandHandler(IDespesaCommandRepository commandRepository, IDespesaQueryRepository queryRepository, IMapper mapper)
         {
-            _despesaCommandRepository = despesaCommandRepository;
+            _commandRepository = commandRepository;
+            _queryRepository = queryRepository;
             _mapper = mapper;
-            _despesaQueryRepository = despesaQueryRepository;
         }
 
-        public async Task<Result> Handle(CreateDespesaCommand request, CancellationToken cancellationToken)
-        {
-            var possivelDespesaDuplicada = await _despesaQueryRepository.ReadDespesaByMonth(
-                request.Data.Month, 
-                request.Data.Year, 
-                request.Descricao
-            );
-
-            if(possivelDespesaDuplicada != null)
-                return new RegistroDuplicadoResult();
-            
-            var despesa = _mapper.Map<Despesa>(request);
-            await _despesaCommandRepository.CreateDespesaAsync(despesa);
-
-            var despesaViewModel = _mapper.Map<DespesaViewModel>(despesa);
-            return new CriadoComSucessoResult(despesaViewModel);
-        }
     }
 }

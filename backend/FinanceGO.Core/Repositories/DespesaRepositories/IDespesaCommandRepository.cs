@@ -10,5 +10,6 @@ namespace FinanceGO.Core.Repositories.DespesaRepositories
     {
         Task CreateDespesaAsync(Despesa despesa);
         Task SaveChangesAsync();
+        Task UpdateDespesaAsync(Despesa despesaComDadosAlterados);
     }
 }
