@@ -11,6 +11,6 @@ namespace FinanceGO.Core.Repositories.ReceitaRepositories
         Task CreateReceitaAsync(Receita receita);
         Task SaveChangesAsync();
         Task UpdateReceitaAsync(Receita receitaComDadosAlterados);
-        
+        Task DeleteReceitaAsync(int id);
     }
 }

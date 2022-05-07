@@ -14,20 +14,18 @@ namespace FinanceGO.Application.Queries.DespesaQueries.ReadDespesaById
     public class ReadDespesaByIdQueryHandler : IRequestHandler<ReadDespesaByIdQuery, DespesaViewModel>
     {
         private readonly IMapper _mapper;
-        private readonly IDespesaQueryRepository _despesaQueryRepository;
+        private readonly IDespesaQueryRepository _queryRepository;
 
-        public ReadDespesaByIdQueryHandler(IMapper mapper, IDespesaQueryRepository despesaQueryRepository)
+        public ReadDespesaByIdQueryHandler(IMapper mapper, IDespesaQueryRepository queryRepository)
         {
             _mapper = mapper;
-            _despesaQueryRepository = despesaQueryRepository;
+            _queryRepository = queryRepository;
         }
+
         public async Task<DespesaViewModel> Handle(ReadDespesaByIdQuery request, CancellationToken cancellationToken)
         {
-            var despesa = await _despesaQueryRepository.ReadDespesaByIdAsync(request.Id);
+            var despesa = await _queryRepository.GetDespesaByIdAsync(request.Id);
 
-            if(despesa == null)
-                return null;
-            
             return _mapper.Map<DespesaViewModel>(despesa);
         }
     }

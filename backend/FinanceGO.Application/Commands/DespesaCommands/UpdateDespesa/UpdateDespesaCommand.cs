@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Enums;
 using FinanceGO.Core.Results;
 using MediatR;
 
-namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
+namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
 {
-    public class CreateDespesaCommand : IRequest<Result>
+    public class UpdateDespesaCommand : IRequest<Result>
     {
-        public CreateDespesaCommand(string descricao, double valor, DateTime data, Categoria categoria = 0)
+        public UpdateDespesaCommand(int id, string descricao, double valor, DateTime data, Categoria categoria)
         {
+            Id = id;
             Descricao = descricao;
             Valor = valor;
             Data = data;
             Categoria = categoria;
         }
 
+        [Required]
+        public int Id { get; set; }       
         [Required]
         public string Descricao { get; set; }
         [Required]

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FinanceGO.Core.Results
 {
-    public class Result
+    public abstract class Result
     {
         public Result(bool isSuccess)
         {

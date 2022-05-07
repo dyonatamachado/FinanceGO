@@ -25,5 +25,26 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
             _mapper = mapper;
         }
 
+        public async Task<Result> Handle(CreateDespesaCommand request, CancellationToken cancellationToken)
+        {
+            var despesaIsDuplicada = await VerificarSeDespesaDuplicada(request);
+            if(despesaIsDuplicada) return new RegistroDuplicadoResult();
+
+            var despesa = _mapper.Map<Despesa>(request);
+
+            await _commandRepository.CreateDespesaAsync(despesa);
+
+            var despesaViewModel = _mapper.Map<DespesaViewModel>(despesa);
+
+            return new CriadoComSucessoResult(despesaViewModel);
+        }
+
+        private async Task<bool> VerificarSeDespesaDuplicada(CreateDespesaCommand request)
+        {
+            var despesasDoMesmoMes = await _queryRepository
+                .GetDespesasByMonthAsync(request.Data.Month, request.Data.Year);
+
+            return despesasDoMesmoMes.Exists(d => d.Descricao == request.Descricao);
+        }
     }
 }
