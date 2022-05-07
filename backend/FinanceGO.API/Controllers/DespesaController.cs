@@ -24,8 +24,9 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDespesas(GetDespesasQuery query)
+        public async Task<IActionResult> GetDespesas()
         {
+            var query = new GetDespesasQuery();
             var despesas = await _mediator.Send(query);
 
             if(despesas.Count == 0) return NoContent();
