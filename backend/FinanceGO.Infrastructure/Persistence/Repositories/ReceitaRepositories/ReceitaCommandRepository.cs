@@ -23,9 +23,10 @@ namespace FinanceGO.Infrastructure.Persistence.Repositories.ReceitaRepositories
             await SaveChangesAsync();
         }
 
-        public async Task DeleteReceitaAsync(int id)
+        public async Task DeleteReceitaAsync(Receita receitaASerDeletada)
         {
-            var receita = await _context.Receitas.SingleOrDefaultAsync(r => r.Id == id);
+            var receita = await _context.Receitas
+                .SingleOrDefaultAsync(r => r.Id == receitaASerDeletada.Id);
 
             _context.Receitas.Remove(receita);
             await SaveChangesAsync();

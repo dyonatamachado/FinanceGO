@@ -22,11 +22,11 @@ namespace FinanceGO.Application.Commands.DespesaCommands.DeleteDespesa
 
         public async Task<Result> Handle(DeleteDespesaCommand request, CancellationToken cancellationToken)
         {
-            var despesaASerDeletada = _queryRepository.GetDespesaByIdAsync(request.Id);
+            var despesaASerDeletada = await _queryRepository.GetDespesaByIdAsync(request.Id);
             if(despesaASerDeletada == null) 
                 return new RegistroNaoEncontradoResult();
 
-            await _commandRepository.DeleteDespesaAsync(request.Id);
+            await _commandRepository.DeleteDespesaAsync(despesaASerDeletada);
             return new DeletadoComSucessoResult();
         }
     }

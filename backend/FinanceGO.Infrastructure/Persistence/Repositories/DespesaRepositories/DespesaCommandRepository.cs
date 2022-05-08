@@ -23,9 +23,10 @@ namespace FinanceGO.Infrastructure.Persistence.Repositories.DespesaRepositories
             await SaveChangesAsync();
         }
 
-        public async Task DeleteDespesaAsync(int id)
+        public async Task DeleteDespesaAsync(Despesa despesaASerDeletada)
         {
-            var despesa = await _context.Despesas.SingleOrDefaultAsync(d => d.Id == id);
+            var despesa = await _context.Despesas
+                .SingleOrDefaultAsync(d => d.Id == despesaASerDeletada.Id);
 
             _context.Despesas.Remove(despesa);
             await SaveChangesAsync();
