@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FinanceGO.Core.Repositories.DespesaRepositories;
+using FinanceGO.Core.Repositories.ReceitaRepositories;
 using FinanceGO.Infrastructure.Persistence.Repositories.DespesaRepositories;
+using FinanceGO.Infrastructure.Persistence.Repositories.ReceitaRepositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FinanceGO.API.ServiceExtensions
@@ -14,6 +16,8 @@ namespace FinanceGO.API.ServiceExtensions
         {
             services.AddScoped<IDespesaCommandRepository, DespesaCommandRepository>();
             services.AddScoped<IDespesaQueryRepository, DespesaQueryRepository>();
+            services.AddScoped<IReceitaCommandRepository, ReceitaCommandRepository>();
+            services.AddScoped<IReceitaQueryRepository, ReceitaQueryRepository>();
         }
     }
 }
