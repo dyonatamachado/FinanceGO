@@ -8,9 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinanceGO.API.Controllers
 {
     [ApiController]
-    [Route("usuario")]
+    [Route("usuarios")]
     public class UsuarioController : ControllerBase
     {
-
+        /*
+        getusuariobyid
+        login
+        cadastro
+        atualizarsenha
+        atualizardados
+        removerusuario
+        */
     }
 }

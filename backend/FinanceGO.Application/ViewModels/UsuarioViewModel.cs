@@ -4,19 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FinanceGO.Core.Entities
+namespace FinanceGO.Application.ViewModels
 {
-    public class Usuario
+    public class UsuarioViewModel
     {
-        public Usuario(string nome, string email, string senha, DateTime dataDeNascimento)
+        public UsuarioViewModel(int id, string nome, string email, DateTime dataDeNascimento)
         {
+            Id = id;
             Nome = nome;
             Email = email;
-            Senha = senha;
             DataDeNascimento = dataDeNascimento;
         }
 
-        [Key]
         [Required]
         public int Id { get; private set; }
         [Required]
@@ -24,17 +23,6 @@ namespace FinanceGO.Core.Entities
         [Required]
         public string Email { get; private set; }
         [Required]
-        public string Senha { get; private set; }
-        [Required]
         public DateTime DataDeNascimento { get; private set; }
-        [Required]
-        public List<Despesa> Despesas { get; private set; }
-        [Required]
-        public List<Receita> Receitas { get; private set; }
-
-        public void AlterarSenha(string senhaAlteradaHash)
-        {
-            this.Senha = senhaAlteradaHash;
-        }
     }
 }
