@@ -9,12 +9,14 @@ namespace FinanceGO.Core.Entities
 {
     public class Despesa
     {
-        public Despesa(string descricao, double valor, DateTime data, Categoria categoria = 0)
+        public Despesa(int id, string descricao, double valor, DateTime data, Categoria categoria, int usuarioId)
         {
+            Id = id;
             Descricao = descricao;
             Valor = valor;
             Data = data;
             Categoria = categoria;
+            UsuarioId = usuarioId;
         }
 
         [Key]
@@ -28,5 +30,9 @@ namespace FinanceGO.Core.Entities
         public DateTime Data { get; set; }
         [Required]
         public Categoria Categoria {get; set;}
+        [Required]
+        public int UsuarioId { get; private set; }
+        [Required]
+        public Usuario Usuario { get; private set; }
     }
 }

@@ -13,6 +13,11 @@ namespace FinanceGO.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Receita> builder)
         {
             builder.HasKey(r => r.Id);
+
+            builder.HasOne(r => r.Usuario)
+                .WithMany(u => u.Receitas)
+                .HasForeignKey(r => r.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);;
         }
     }
 }

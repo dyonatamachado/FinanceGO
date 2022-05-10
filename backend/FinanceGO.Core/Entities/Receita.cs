@@ -8,13 +8,14 @@ namespace FinanceGO.Core.Entities
 {
     public class Receita
     {
-        public Receita(string descricao, double valor, DateTime data)
+        public Receita(string descricao, double valor, DateTime data, int usuarioId)
         {
             Descricao = descricao;
             Valor = valor;
             Data = data;
+            UsuarioId = usuarioId;
         }
-        
+
         [Key]
         [Required]
         public int Id { get; set; }
@@ -24,5 +25,9 @@ namespace FinanceGO.Core.Entities
         public double Valor { get; set; }
         [Required]
         public DateTime Data { get; set; }
+        [Required]
+        public int UsuarioId { get; private set; }
+        [Required]
+        public Usuario Usuario { get; private set; }
     }
 }

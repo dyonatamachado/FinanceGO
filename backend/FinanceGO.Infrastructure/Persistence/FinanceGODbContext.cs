@@ -17,6 +17,7 @@ namespace FinanceGO.Infrastructure.Persistence
 
         public DbSet<Despesa> Despesas { get; set; }
         public DbSet<Receita> Receitas { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
