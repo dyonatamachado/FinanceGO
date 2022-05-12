@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FinanceGO.Application.InputModels.UsuarioInputModels;
 using FinanceGO.Core.Results;
 using MediatR;
 
@@ -9,11 +10,11 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.DeleteUsuario
 {
     public class DeleteUsuarioCommand : IRequest<Result>
     {
-        public DeleteUsuarioCommand(int id, string email, string password)
+        public DeleteUsuarioCommand(int id, DeleteUsuarioInputModel inputModel)
         {
             Id = id;
-            Email = email;
-            Password = password;
+            Email = inputModel.Email;
+            Password = inputModel.Password;
         }
 
         public int Id { get; set; }

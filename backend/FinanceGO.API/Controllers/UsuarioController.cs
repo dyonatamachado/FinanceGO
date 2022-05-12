@@ -7,6 +7,7 @@ using FinanceGO.Application.Commands.UsuarioCommands.DeleteUsuario;
 using FinanceGO.Application.Commands.UsuarioCommands.LoginUsuario;
 using FinanceGO.Application.Commands.UsuarioCommands.UpdateSenha;
 using FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario;
+using FinanceGO.Application.InputModels.UsuarioInputModels;
 using FinanceGO.Application.Queries.UsuarioQueries.GetUsuarioById;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.AuthServices;
@@ -63,8 +64,9 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUsuario(int id, [FromBody] UpdateUsuarioCommand command)
+        public async Task<IActionResult> UpdateUsuario(int id, [FromBody] UpdateUsuarioInputModel inputModel)
         {
+            var command = new UpdateUsuarioCommand(id, inputModel);
             var resultado = await _mediator.Send(command);
 
             if(resultado is RegistroNaoEncontradoResult) 
@@ -78,8 +80,9 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateSenha(int id, [FromBody] UpdateSenhaCommand command)
+        public async Task<IActionResult> UpdateSenha(int id, [FromBody] UpdateSenhaInputModel inputModel)
         {
+            var command = new UpdateSenhaCommand(id, inputModel);
             var resultado = await _mediator.Send(command);
 
             if(resultado is RegistroNaoEncontradoResult) return NotFound();
@@ -92,8 +95,9 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario(int id, [FromBody] DeleteUsuarioCommand command)
+        public async Task<IActionResult> DeleteUsuario(int id, [FromBody] DeleteUsuarioInputModel inputModel)
         {
+            var command = new DeleteUsuarioCommand(id, inputModel);
             var resultado = await _mediator.Send(command);
 
             if(resultado is RegistroNaoEncontradoResult) 
@@ -105,8 +109,5 @@ namespace FinanceGO.API.Controllers
             else
                 return BadRequest();
         }
-/*
-removerusuario
-*/
     }
 }

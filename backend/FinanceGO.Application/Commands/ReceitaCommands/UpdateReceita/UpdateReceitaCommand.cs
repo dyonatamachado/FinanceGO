@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using FinanceGO.Application.InputModels.ReceitaInputModels;
 using FinanceGO.Core.Results;
 using MediatR;
 
@@ -10,21 +11,17 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
 {
     public class UpdateReceitaCommand : IRequest<Result>
     {
-        public UpdateReceitaCommand(int id, string descricao, double valor, DateTime data)
+        public UpdateReceitaCommand(int id, UpdateReceitaInputModel inputModel)
         {
             Id = id;
-            Descricao = descricao;
-            Valor = valor;
-            Data = data;
+            Descricao = inputModel.Descricao;
+            Valor = inputModel.Valor;
+            Data = inputModel.Data;
         }
 
-        [Required]
-        public int Id { get; set; }       
-        [Required]
-        public string Descricao { get; set; }
-        [Required]
-        public double Valor { get; set; }
-        [Required]
-        public DateTime Data { get; set; }
+        public int Id { get; private set; }       
+        public string Descricao { get; private set; }
+        public double Valor { get; private set; }
+        public DateTime Data { get; private set; }
     }
 }

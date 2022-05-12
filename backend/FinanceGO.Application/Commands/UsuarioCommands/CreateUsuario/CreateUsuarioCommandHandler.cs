@@ -21,11 +21,12 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.CreateUsuario
         private readonly IMapper _mapper;
 
 
-        public CreateUsuarioCommandHandler(IUsuarioCommandRepository commandRepository, IAuthenticationService authenticationService, IMapper mapper)
+        public CreateUsuarioCommandHandler(IUsuarioCommandRepository commandRepository, IAuthenticationService authenticationService, IMapper mapper, IUsuarioQueryRepository queryRepository)
         {
             _commandRepository = commandRepository;
             _authenticationService = authenticationService;
             _mapper = mapper;
+            _queryRepository = queryRepository;
         }
 
         public async Task<Result> Handle(CreateUsuarioCommand request, CancellationToken cancellationToken)

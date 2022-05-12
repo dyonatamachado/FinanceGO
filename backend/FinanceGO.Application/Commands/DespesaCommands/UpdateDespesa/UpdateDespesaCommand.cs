@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using FinanceGO.Application.InputModels.DespesaInputModels;
 using FinanceGO.Core.Enums;
 using FinanceGO.Core.Results;
 using MediatR;
@@ -11,24 +12,19 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
 {
     public class UpdateDespesaCommand : IRequest<Result>
     {
-        public UpdateDespesaCommand(int id, string descricao, double valor, DateTime data, Categoria categoria)
+        public UpdateDespesaCommand(int id, UpdateDespesaInputModel inputModel)
         {
             Id = id;
-            Descricao = descricao;
-            Valor = valor;
-            Data = data;
-            Categoria = categoria;
+            Descricao = inputModel.Descricao;
+            Valor = inputModel.Valor;
+            Data = inputModel.Data;
+            Categoria = inputModel.Categoria;
         }
 
-        [Required]
-        public int Id { get; set; }       
-        [Required]
-        public string Descricao { get; set; }
-        [Required]
-        public double Valor { get; set; }
-        [Required]
-        public DateTime Data { get; set; }
-        [Range(0, 7, ErrorMessage = "O dado de Categoria não é obrigatório, porém só aceita valores inteiros entre 0 e 7.")]
-        public Categoria Categoria { get; set; }
+        public int Id { get; private set; }       
+        public string Descricao { get; private set; }
+        public double Valor { get; private set; }
+        public DateTime Data { get; private set; }
+        public Categoria Categoria { get; private set; }
     }
 }

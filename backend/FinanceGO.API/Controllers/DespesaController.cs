@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using FinanceGO.Application.Commands.DespesaCommands.CreateDespesa;
 using FinanceGO.Application.Commands.DespesaCommands.DeleteDespesa;
 using FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa;
+using FinanceGO.Application.InputModels.DespesaInputModels;
 using FinanceGO.Application.Queries.DespesaQueries.GetDespesaById;
 using FinanceGO.Application.Queries.DespesaQueries.GetDespesas;
 using FinanceGO.Application.Queries.DespesaQueries.GetDespesasByMonth;
@@ -76,8 +77,9 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDespesa(int id, [FromBody] UpdateDespesaCommand command)
+        public async Task<IActionResult> UpdateDespesa(int id, [FromBody] UpdateDespesaInputModel inputModel)
         {
+            var command = new UpdateDespesaCommand(id, inputModel);
             var resultado = await _mediator.Send(command);
 
             if(resultado is RegistroNaoEncontradoResult) 

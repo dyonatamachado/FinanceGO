@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FinanceGO.Application.Commands.ReceitaCommands.CreateReceita;
 using FinanceGO.Application.Commands.ReceitaCommands.DeleteReceita;
 using FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita;
+using FinanceGO.Application.InputModels.ReceitaInputModels;
 using FinanceGO.Application.Queries.ReceitaQueries.GetReceitaById;
 using FinanceGO.Application.Queries.ReceitaQueries.GetReceitas;
 using FinanceGO.Application.Queries.ReceitaQueries.GetReceitasByMonth;
@@ -76,8 +77,9 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateReceita(int id, [FromBody] UpdateReceitaCommand command)
+        public async Task<IActionResult> UpdateReceita(int id, [FromBody] UpdateReceitaInputModel inputModel)
         {
+            var command = new UpdateReceitaCommand(id, inputModel);
             var resultado = await _mediator.Send(command);
 
             if(resultado is RegistroNaoEncontradoResult) 
