@@ -33,7 +33,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
 
             var despesaComDadosAlterados = _mapper.Map(request, despesaASerAlterada);
             await _commandRepository.UpdateDespesaAsync(despesaComDadosAlterados);
-            return new RegistroAtualizadoComSucesso();
+            return new RegistroAtualizadoComSucessoResult();
         }
 
         private async Task<bool> VerificarSeDespesaDuplicada(UpdateDespesaCommand request)

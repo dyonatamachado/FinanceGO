@@ -22,6 +22,11 @@ namespace FinanceGO.Infrastructure.Persistence.Repositories.UsuarioRepositories
             return await _context.Usuarios.SingleOrDefaultAsync(u => u.Email == email && u.Senha == passwordHash);
         }
 
+        public async Task<Usuario> GetUsuarioByEmailAsync(string email)
+        {
+            return await _context.Usuarios.SingleOrDefaultAsync(u => u.Email == email);
+        }
+
         public async Task<Usuario> GetUsuarioByIdAsync(int id)
         {
             return await _context.Usuarios.SingleOrDefaultAsync(u => u.Id == id);

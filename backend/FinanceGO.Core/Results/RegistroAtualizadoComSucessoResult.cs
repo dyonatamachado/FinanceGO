@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace FinanceGO.Core.Results
 {
-    public class RegistroAtualizadoComSucesso : Result
+    public class RegistroAtualizadoComSucessoResult : Result
     {
-        public RegistroAtualizadoComSucesso() : base(true)
+        public RegistroAtualizadoComSucessoResult() : base(true)
         {
         }
     }

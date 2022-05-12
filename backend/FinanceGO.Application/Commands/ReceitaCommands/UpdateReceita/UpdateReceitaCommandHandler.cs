@@ -30,7 +30,7 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
 
             var receitaComDadosAlterados = _mapper.Map(request, receitaASerAlterada);
             await _commandRepository.UpdateReceitaAsync(receitaComDadosAlterados);
-            return new RegistroAtualizadoComSucesso();
+            return new RegistroAtualizadoComSucessoResult();
         }
 
         private async Task<bool> VerificarSeReceitaDuplicada(UpdateReceitaCommand request)

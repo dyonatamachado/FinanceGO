@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Entities;
 
@@ -13,6 +14,7 @@ namespace FinanceGO.Application.Profiles
         public UsuarioProfile()
         {
             CreateMap<Usuario, UsuarioViewModel>();
+            CreateMap<UpdateUsuarioCommand, Usuario>();
         }
     }
 }
