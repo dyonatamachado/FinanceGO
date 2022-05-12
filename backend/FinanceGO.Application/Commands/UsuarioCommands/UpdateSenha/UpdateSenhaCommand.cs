@@ -9,10 +9,10 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateSenha
 {
     public class UpdateSenhaCommand : IRequest<Result>
     {
-        public int Id { get; private set; }
-        public string Email { get; private set; }
-        public string SenhaAtual { get; private set; }
-        public string NovaSenha { get; private set; }
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string SenhaAtual { get; set; }
+        public string NovaSenha { get; set; }
 
     }
 }

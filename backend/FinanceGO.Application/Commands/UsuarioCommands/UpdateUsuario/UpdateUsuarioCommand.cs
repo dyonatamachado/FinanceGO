@@ -19,12 +19,12 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario
         }
 
         [Required]
-        public int Id { get; private set; }
+        public int Id { get; set; }
         [Required]
-        public string Nome { get; private set; }
+        public string Nome { get; set; }
         [Required]
-        public string Email { get; private set; }
+        public string Email { get; set; }
         [Required]
-        public DateTime DataDeNascimento { get; private set; }
+        public DateTime DataDeNascimento { get; set; }
     }
 }
