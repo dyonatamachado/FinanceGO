@@ -84,7 +84,7 @@ namespace FinanceGO.API.Controllers
                 return NotFound();
             else if(resultado is RegistroDuplicadoResult)
                 return BadRequest("Já existe receita cadastrada com a mesma descrição para este mês");
-            else if(resultado is RegistroAtualizadoComSucesso) 
+            else if(resultado is RegistroAtualizadoComSucessoResult) 
                 return NoContent();
             else 
                 return BadRequest();
