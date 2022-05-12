@@ -28,10 +28,23 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario
             var usuario = await _queryRepository.GetUsuarioByIdAsync(request.Id);
             if(usuario == null) return new RegistroNaoEncontradoResult();
 
+            var existeUsuarioCadastradoComMesmoEmail = await VerificarSeExisteUsuarioComMesmoEmail(request.Email);
+            if(existeUsuarioCadastradoComMesmoEmail) return new RegistroDuplicadoResult();
+
             usuario = _mapper.Map(request, usuario);
             await _commandRepository.UpdateUsuarioAsync(usuario);
 
             return new RegistroAtualizadoComSucessoResult();
+        }
+
+        private async Task<bool> VerificarSeExisteUsuarioComMesmoEmail(string email)
+        {
+            var possivelUsuarioComMesmoEmail = await _queryRepository.GetUsuarioByEmailAsync(email);
+            
+            if(possivelUsuarioComMesmoEmail == null) 
+                return false;
+
+            return true;
         }
     }
 }

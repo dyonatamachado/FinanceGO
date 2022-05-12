@@ -13,8 +13,9 @@ using MediatR;
 
 namespace FinanceGO.Application.Commands.UsuarioCommands.CreateUsuario
 {
-    public class CreateUsuarioCommandHandler : IRequestHandler<CreateUsuarioCommand, UsuarioViewModel>
+    public class CreateUsuarioCommandHandler : IRequestHandler<CreateUsuarioCommand, Result>
     {
+        private readonly IUsuarioQueryRepository _queryRepository;
         private readonly IUsuarioCommandRepository _commandRepository;
         private readonly IAuthenticationService _authenticationService;
         private readonly IMapper _mapper;
@@ -27,14 +28,28 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.CreateUsuario
             _mapper = mapper;
         }
 
-        public async Task<UsuarioViewModel> Handle(CreateUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateUsuarioCommand request, CancellationToken cancellationToken)
         {
+            var existeUsuarioCadastradoComMesmoEmail = await VerificarSeExisteUsuarioComMesmoEmail(request.Email);
+            if(existeUsuarioCadastradoComMesmoEmail) return new RegistroDuplicadoResult();
+            
             var senhaHash = _authenticationService.ComputeSha256Hash(request.Senha);
 
             var usuario = new Usuario(request.Nome, request.Email, senhaHash, request.DataDeNascimento);
             await _commandRepository.CreateUsuarioAsync(usuario);
 
-            return _mapper.Map<UsuarioViewModel>(usuario);                        
+            var usuarioViewModel = _mapper.Map<UsuarioViewModel>(usuario);
+            return new CriadoComSucessoResult(usuarioViewModel);                        
+        }
+
+        private async Task<bool> VerificarSeExisteUsuarioComMesmoEmail(string email)
+        {
+            var possivelUsuarioComMesmoEmail = await _queryRepository.GetUsuarioByEmailAsync(email);
+            
+            if(possivelUsuarioComMesmoEmail == null) 
+                return false;
+
+            return true;
         }
     }
 }

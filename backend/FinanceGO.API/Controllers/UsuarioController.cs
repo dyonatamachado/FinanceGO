@@ -8,6 +8,7 @@ using FinanceGO.Application.Commands.UsuarioCommands.LoginUsuario;
 using FinanceGO.Application.Commands.UsuarioCommands.UpdateSenha;
 using FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario;
 using FinanceGO.Application.Queries.UsuarioQueries.GetUsuarioById;
+using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.AuthServices;
 using FinanceGO.Core.Results;
 using MediatR;
@@ -40,9 +41,17 @@ namespace FinanceGO.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUsuario([FromBody] CreateUsuarioCommand command)
         {
-            var usuario = await _mediator.Send(command);
+            var resultado = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetUsuarioById), new { Id = usuario.Id}, usuario);
+            if(resultado is RegistroDuplicadoResult)
+                return BadRequest("Já existe usuário cadastrado com o mesmo e-mail");
+            else if(resultado is CriadoComSucessoResult)
+            {
+                var usuarioViewModel = (UsuarioViewModel) resultado.Value;
+                return CreatedAtAction(nameof(GetUsuarioById), new { Id = usuarioViewModel.Id}, usuarioViewModel);
+            }
+            else
+                return BadRequest();
         }
 
         [HttpPost("/login")]
@@ -60,8 +69,12 @@ namespace FinanceGO.API.Controllers
 
             if(resultado is RegistroNaoEncontradoResult) 
                 return NotFound();
-
-            return NoContent();
+            else if(resultado is RegistroDuplicadoResult)
+                return BadRequest("Já existe usuário cadastrado com o mesmo e-mail");
+            else if(resultado is RegistroAtualizadoComSucessoResult)
+                return NoContent();
+            else
+                return BadRequest();
         }
 
         [HttpPatch("{id}")]

@@ -1,11 +1,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using FinanceGO.Application.ViewModels;
+using FinanceGO.Core.Results;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.UsuarioCommands.CreateUsuario
 {
-    public class CreateUsuarioCommand : IRequest<UsuarioViewModel>
+    public class CreateUsuarioCommand : IRequest<Result>
     {
         public CreateUsuarioCommand(string nome, string email, string senha, DateTime dataDeNascimento)
         {
