@@ -36,12 +36,11 @@ namespace FinanceGO.API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddRepositories();
             services.AddAuthServices();
+            services.AddUserServices();
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddMediatR(typeof(CreateDespesaCommand));
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FinanceGO.API", Version = "v1" });
-            });
+            services.ConfigureSwagger();
+            services.AddJwtAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +57,7 @@ namespace FinanceGO.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

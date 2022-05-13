@@ -46,7 +46,7 @@ namespace FinanceGO.Infrastructure.AuthServices
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim> {
-                new Claim("userId", id.ToString())
+                new Claim("UserId", id.ToString())
             };
 
             var token = new JwtSecurityToken(
