@@ -55,11 +55,19 @@ namespace FinanceGO.API.Controllers
         public async Task<IActionResult> GetReceitaById(int id)
         {
             var query = new GetReceitaByIdQuery(id);
-            var receita = await _mediator.Send(query);
+            var resultado = await _mediator.Send(query);
 
-            if(receita == null) return NotFound();
-
-            return Ok(receita);
+            if(resultado is RegistroNaoEncontradoResult)
+                return NotFound();
+            else if(resultado is UsuarioNaoAutorizadoResult)
+                return Forbid();
+            else if(resultado is RegistroEncontradoResult)
+            {
+                var receita = (ReceitaViewModel) resultado.Value;
+                return Ok(receita);
+            }
+            else
+                return BadRequest();
         }
 
         [HttpPost]
@@ -86,6 +94,8 @@ namespace FinanceGO.API.Controllers
 
             if(resultado is RegistroNaoEncontradoResult) 
                 return NotFound();
+            else if(resultado is UsuarioNaoAutorizadoResult)
+                return Forbid();
             else if(resultado is RegistroDuplicadoResult)
                 return BadRequest("Já existe receita cadastrada com a mesma descrição para este mês");
             else if(resultado is RegistroAtualizadoComSucessoResult) 
@@ -100,9 +110,14 @@ namespace FinanceGO.API.Controllers
             var command = new DeleteReceitaCommand(id);
             var resultado = await _mediator.Send(command);
 
-            if(resultado is RegistroNaoEncontradoResult) return NotFound();
-            else if(resultado is DeletadoComSucessoResult) return NoContent();
-            else return BadRequest();
+            if(resultado is RegistroNaoEncontradoResult) 
+                return NotFound();
+            else if(resultado is UsuarioNaoAutorizadoResult)
+                return Forbid();
+            else if(resultado is DeletadoComSucessoResult) 
+                return NoContent();
+            else 
+                return BadRequest();
         }
     }
 }
