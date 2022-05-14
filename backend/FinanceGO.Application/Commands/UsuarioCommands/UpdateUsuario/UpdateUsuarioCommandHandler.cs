@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FinanceGO.Core.Repositories.UsuarioRepositories;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.UserServices;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario
@@ -15,16 +16,19 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario
         private readonly IUsuarioQueryRepository _queryRepository; 
         private readonly IUsuarioCommandRepository _commandRepository;
         private readonly IMapper _mapper;
+        private readonly int _loggedUserId;
 
-        public UpdateUsuarioCommandHandler(IUsuarioQueryRepository queryRepository, IUsuarioCommandRepository commandRepository, IMapper mapper)
+        public UpdateUsuarioCommandHandler(IUsuarioQueryRepository queryRepository, IUsuarioCommandRepository commandRepository, IMapper mapper, ILoggedUserService usuarioService)
         {
             _queryRepository = queryRepository;
             _commandRepository = commandRepository;
             _mapper = mapper;
+            _loggedUserId = usuarioService.GetUserId();
         }
 
         public async Task<Result> Handle(UpdateUsuarioCommand request, CancellationToken cancellationToken)
         {
+            if(request.Id != _loggedUserId) return new UsuarioNaoAutorizadoResult();
             var usuario = await _queryRepository.GetUsuarioByIdAsync(request.Id);
 
             var existeUsuarioCadastradoComMesmoEmail = await VerificarSeExisteUsuarioComMesmoEmail(request.Email);

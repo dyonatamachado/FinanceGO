@@ -28,6 +28,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
         public double Valor { get; set; }
         [Required]
         public DateTime Data { get; set; }
+        [Required]
         [Range(0, 7, ErrorMessage = "O dado de Categoria não é obrigatório, porém só aceita valores inteiros entre 0 e 7.")]
         public Categoria Categoria { get; set; }
         [Required]

@@ -58,9 +58,17 @@ namespace FinanceGO.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LoginUsuario([FromBody] LoginUsuarioCommand command)
         {
-            var loginViewModel = await _mediator.Send(command);
-
-            return Ok(loginViewModel);
+            var resultado = await _mediator.Send(command);
+            
+            if(resultado is DadosInformadosNaoConferemResult)
+                return BadRequest("Os dados informados não conferem. Favor verifique");
+            else if(resultado is LoginEfetuadoComSucessoResult)
+            {
+                var loginViewModel = (LoginUsuarioViewModel) resultado.Value;
+                return Ok(loginViewModel);
+            }
+            else
+                return BadRequest();
         }
 
         [HttpPut("{id}")]
