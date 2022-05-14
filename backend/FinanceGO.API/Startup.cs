@@ -38,6 +38,7 @@ namespace FinanceGO.API
             services.AddAuthServices();
             services.AddUserServices();
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            services.ConfigureAuthorization();
             services.AddMediatR(typeof(CreateDespesaCommand));
             services.ConfigureSwagger();
             services.AddJwtAuthentication(Configuration);

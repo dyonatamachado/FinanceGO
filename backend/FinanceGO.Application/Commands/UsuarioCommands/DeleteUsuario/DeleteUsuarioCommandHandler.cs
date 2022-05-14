@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using FinanceGO.Core.AuthServices;
+using FinanceGO.Core.Authentication;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.UsuarioRepositories;
 using FinanceGO.Core.Results;

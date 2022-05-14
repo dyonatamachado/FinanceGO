@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using FinanceGO.Application.Commands.UsuarioCommands.CreateUsuario;
 using FinanceGO.Application.Commands.UsuarioCommands.DeleteUsuario;
@@ -10,15 +7,16 @@ using FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario;
 using FinanceGO.Application.InputModels.UsuarioInputModels;
 using FinanceGO.Application.Queries.UsuarioQueries.GetUsuarioById;
 using FinanceGO.Application.ViewModels;
-using FinanceGO.Core.AuthServices;
 using FinanceGO.Core.Results;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceGO.API.Controllers
 {
     [ApiController]
     [Route("usuarios")]
+    [Authorize(Policy = "HasUserId")]
     public class UsuarioController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -40,6 +38,7 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUsuario([FromBody] CreateUsuarioCommand command)
         {
             var resultado = await _mediator.Send(command);
@@ -56,6 +55,7 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpPost("/login")]
+        [AllowAnonymous]
         public async Task<IActionResult> LoginUsuario([FromBody] LoginUsuarioCommand command)
         {
             var loginViewModel = await _mediator.Send(command);

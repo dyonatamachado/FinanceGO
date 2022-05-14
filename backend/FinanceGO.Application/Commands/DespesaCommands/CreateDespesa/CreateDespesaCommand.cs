@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Enums;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.UserServices;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
 {
     public class CreateDespesaCommand : IRequest<Result>
     {
-        public CreateDespesaCommand(string descricao, double valor, DateTime data, Categoria categoria = 0)
+        public CreateDespesaCommand(string descricao, double valor, DateTime data, ILoggedUserService usuario, Categoria categoria = 0)
         {
             Descricao = descricao;
             Valor = valor;
             Data = data;
             Categoria = categoria;
+            UsuarioId = usuario.GetUserId();
         }
 
         [Required]
@@ -28,5 +30,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
         public DateTime Data { get; set; }
         [Range(0, 7, ErrorMessage = "O dado de Categoria não é obrigatório, porém só aceita valores inteiros entre 0 e 7.")]
         public Categoria Categoria { get; set; }
+        [Required]
+        public int UsuarioId { get; private set; }
     }
 }

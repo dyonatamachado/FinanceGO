@@ -7,13 +7,13 @@ namespace FinanceGO.Application.ViewModels
 {
     public class LoginUsuarioViewModel
     {
-        public LoginUsuarioViewModel(string email, string token)
+        public LoginUsuarioViewModel(string nome, string token)
         {
-            Email = email;
+            Nome = nome;
             Token = token;
         }
 
-        public string Email { get; private set; }
+        public string Nome { get; private set; }
         public string Token { get; private set; }
     }
 }

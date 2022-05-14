@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FinanceGO.Application.ViewModels;
-using FinanceGO.Core.AuthServices;
+using FinanceGO.Core.Authentication;
 using FinanceGO.Core.Repositories.UsuarioRepositories;
 using MediatR;
 
@@ -31,7 +28,7 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.LoginUsuario
 
             var token = _authenticationService.GenerateJwtToken(usuario.Id);
 
-            return new LoginUsuarioViewModel(request.Email, token);
+            return new LoginUsuarioViewModel(usuario.Nome, token);
         }
     }
 }

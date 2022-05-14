@@ -9,12 +9,14 @@ using FinanceGO.Application.Queries.DespesaQueries.GetDespesasByMonth;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Results;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceGO.API.Controllers
 {
     [Route("despesas")]
     [ApiController]
+    [Authorize(Policy = "HasUserId")]
     public class DespesaController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -12,12 +12,14 @@ using FinanceGO.Application.Queries.ReceitaQueries.GetReceitasByMonth;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Results;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceGO.API.Controllers
 {
     [Route("receitas")]
     [ApiController]
+    [Authorize(Policy = "HasUserId")]
     public class ReceitaController : ControllerBase
     {
         private readonly IMediator _mediator;

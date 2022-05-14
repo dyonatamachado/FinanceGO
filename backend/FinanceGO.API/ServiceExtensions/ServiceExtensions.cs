@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FinanceGO.Core.AuthServices;
 using FinanceGO.Core.Repositories.DespesaRepositories;
 using FinanceGO.Core.Repositories.ReceitaRepositories;
 using FinanceGO.Core.Repositories.UsuarioRepositories;
 using FinanceGO.Core.UserServices;
-using FinanceGO.Infrastructure.AuthServices;
 using FinanceGO.Infrastructure.Persistence.Repositories.DespesaRepositories;
 using FinanceGO.Infrastructure.Persistence.Repositories.ReceitaRepositories;
 using FinanceGO.Infrastructure.Persistence.Repositories.UsuarioRepositories;
@@ -19,6 +13,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Configuration;
 using System.Text;
+using FinanceGO.Core.Authentication;
+using FinanceGO.Infrastructure.Authentication;
+using FinanceGO.Core.Authorization;
+using FinanceGO.Infrastructure.Authorization;
 
 namespace FinanceGO.API.ServiceExtensions
 {
@@ -96,6 +94,16 @@ namespace FinanceGO.API.ServiceExtensions
                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
                   };
               });
+        }
+
+        public static void ConfigureAuthorization(this IServiceCollection services)
+        {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("HasUserId", policy => policy.RequireClaim("UserId"));
+            });
+
+            services.AddScoped<IMesmoUsuarioAuthorizationRequirement, MesmoUsuarioAuthorizationRequirement>();
         }
     }
 }

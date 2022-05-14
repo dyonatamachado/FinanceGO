@@ -4,11 +4,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using FinanceGO.Core.AuthServices;
+using FinanceGO.Core.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace FinanceGO.Infrastructure.AuthServices
+namespace FinanceGO.Infrastructure.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {

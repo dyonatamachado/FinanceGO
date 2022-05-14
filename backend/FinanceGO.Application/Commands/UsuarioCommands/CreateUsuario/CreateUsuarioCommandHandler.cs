@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using FinanceGO.Application.ViewModels;
-using FinanceGO.Core.AuthServices;
+using FinanceGO.Core.Authentication;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.UsuarioRepositories;
 using FinanceGO.Core.Results;

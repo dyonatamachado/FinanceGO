@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using FinanceGO.Application.Queries.ResumoQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceGO.API.Controllers
 {   
     [Route("resumo")]
     [ApiController]
+    [Authorize(Policy = "HasUserId")]
     public class ResumoController : ControllerBase
     {
         private readonly IMediator _mediator;
