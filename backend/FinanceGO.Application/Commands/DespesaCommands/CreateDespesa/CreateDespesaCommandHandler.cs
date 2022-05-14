@@ -32,11 +32,9 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
             if(despesaIsDuplicada) return new RegistroDuplicadoResult();
 
             var despesa = _mapper.Map<Despesa>(request);
-
             await _commandRepository.CreateDespesaAsync(despesa);
 
             var despesaViewModel = _mapper.Map<DespesaViewModel>(despesa);
-
             return new CriadoComSucessoResult(despesaViewModel);
         }
 

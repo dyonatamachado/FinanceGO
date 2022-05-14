@@ -54,12 +54,19 @@ namespace FinanceGO.API.Controllers
         {
             var query = new GetDespesaByIdQuery(id);
 
-            var despesa = await _mediator.Send(query);
+            var resultado = await _mediator.Send(query);
             
-            if(despesa == null)
+            if(resultado is RegistroNaoEncontradoResult)
                 return NotFound();
-                
-            return Ok(despesa);
+            else if(resultado is UsuarioNaoAutorizadoResult)
+                return Forbid();
+            else if(resultado is RegistroEncontradoResult)
+            {
+                var despesa = (DespesaViewModel) resultado.Value;
+                return Ok(despesa);
+            }
+            else
+                return BadRequest();
         }
 
         [HttpPost]
@@ -86,6 +93,8 @@ namespace FinanceGO.API.Controllers
 
             if(resultado is RegistroNaoEncontradoResult) 
                 return NotFound();
+            else if(resultado is UsuarioNaoAutorizadoResult)
+                return Forbid();
             else if(resultado is RegistroDuplicadoResult) 
                 return BadRequest("Já existe despesa com a mesma descrição cadastrada neste mês");
             else if(resultado is RegistroAtualizadoComSucessoResult) 
@@ -103,6 +112,8 @@ namespace FinanceGO.API.Controllers
 
             if(resultado is RegistroNaoEncontradoResult)
                 return NotFound();
+            else if(resultado is UsuarioNaoAutorizadoResult)
+                return Forbid();
             else if(resultado is DeletadoComSucessoResult)
                 return NoContent();
             else
