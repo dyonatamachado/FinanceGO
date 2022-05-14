@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Repositories.ReceitaRepositories;
+using FinanceGO.Core.UserServices;
 using MediatR;
 
 namespace FinanceGO.Application.Queries.ReceitaQueries.GetReceitas
@@ -14,16 +15,18 @@ namespace FinanceGO.Application.Queries.ReceitaQueries.GetReceitas
     {
         private readonly IReceitaQueryRepository _queryRepository;
         private readonly IMapper _mapper;
+        private readonly int _loggedUserId;
 
-        public GetReceitasQueryHandler(IReceitaQueryRepository queryRepository, IMapper mapper)
+        public GetReceitasQueryHandler(IReceitaQueryRepository queryRepository, IMapper mapper, ILoggedUserService usuarioService)
         {
             _queryRepository = queryRepository;
             _mapper = mapper;
+            _loggedUserId = usuarioService.GetUserId();
         }
 
         public async Task<List<ReceitaViewModel>> Handle(GetReceitasQuery request, CancellationToken cancellationToken)
         {
-            var receitas = await _queryRepository.GetReceitasAsync();
+            var receitas = await _queryRepository.GetReceitasByUserAsync(_loggedUserId);
 
             return _mapper.Map<List<ReceitaViewModel>>(receitas);
         }

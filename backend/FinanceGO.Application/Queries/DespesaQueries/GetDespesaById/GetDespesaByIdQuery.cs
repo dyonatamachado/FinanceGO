@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FinanceGO.Application.ViewModels;
+using FinanceGO.Core.Results;
 using MediatR;
 
 namespace FinanceGO.Application.Queries.DespesaQueries.GetDespesaById
 {
-    public class GetDespesaByIdQuery : IRequest<DespesaViewModel>
+    public class GetDespesaByIdQuery : IRequest<Result>
     {
         public GetDespesaByIdQuery(int id)
         {

@@ -13,13 +13,13 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
 {
     public class CreateDespesaCommand : IRequest<Result>
     {
-        public CreateDespesaCommand(string descricao, double valor, DateTime data, ILoggedUserService usuario, Categoria categoria = 0)
+        public CreateDespesaCommand(string descricao, double valor, DateTime data, ILoggedUserService usuarioService, Categoria categoria = 0)
         {
             Descricao = descricao;
             Valor = valor;
             Data = data;
             Categoria = categoria;
-            UsuarioId = usuario.GetUserId();
+            UsuarioId = usuarioService.GetUserId();
         }
 
         [Required]

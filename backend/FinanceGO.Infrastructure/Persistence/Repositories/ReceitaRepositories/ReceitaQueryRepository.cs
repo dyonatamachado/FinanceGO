@@ -22,16 +22,16 @@ namespace FinanceGO.Infrastructure.Persistence.Repositories.ReceitaRepositories
             return await _context.Receitas.SingleOrDefaultAsync(r => r.Id == id);
         }
 
-        public async Task<List<Receita>> GetReceitasAsync()
-        {
-            return await _context.Receitas.ToListAsync();
-        }
-
-        public async Task<List<Receita>> GetReceitasByMonthAsync(int mes, int ano)
+        public async Task<List<Receita>> GetReceitasByMonthAndUserAsync(int mes, int ano, int userId)
         {
             return await _context.Receitas
-                .Where(r => r.Data.Month == mes && r.Data.Year == ano)
+                .Where(r => r.Data.Month == mes && r.Data.Year == ano && r.UsuarioId == userId)
                 .ToListAsync();
+        }
+
+        public async Task<List<Receita>> GetReceitasByUserAsync(int userId)
+        {
+            return await _context.Receitas.Where(r => r.UsuarioId == userId).ToListAsync();
         }
     }
 }

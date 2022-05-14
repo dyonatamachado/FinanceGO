@@ -8,8 +8,8 @@ namespace FinanceGO.Core.Repositories.DespesaRepositories
 {
     public interface IDespesaQueryRepository
     {
-        Task<List<Despesa>> GetDespesasByMonthAsync(int mes, int ano);
+        Task<List<Despesa>> GetDespesasByMonthAndUserAsync(int mes, int ano, int userId);
         Task<Despesa> GetDespesaByIdAsync(int id);
-        Task<List<Despesa>> GetDespesasAsync();
+        Task<List<Despesa>> GetDespesasByUserAsync(int userId);
     }
 }

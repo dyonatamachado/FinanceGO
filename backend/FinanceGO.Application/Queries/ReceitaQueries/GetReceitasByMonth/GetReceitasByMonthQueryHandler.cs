@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Repositories.ReceitaRepositories;
+using FinanceGO.Core.UserServices;
 using MediatR;
 
 namespace FinanceGO.Application.Queries.ReceitaQueries.GetReceitasByMonth
@@ -14,16 +15,18 @@ namespace FinanceGO.Application.Queries.ReceitaQueries.GetReceitasByMonth
     {
         private readonly IReceitaQueryRepository _queryRepository;
         private readonly IMapper _mapper;
+        private readonly int _loggedUserId;
 
-        public GetReceitasByMonthQueryHandler(IReceitaQueryRepository queryRepository, IMapper mapper)
+        public GetReceitasByMonthQueryHandler(IReceitaQueryRepository queryRepository, IMapper mapper, ILoggedUserService usuarioService)
         {
             _queryRepository = queryRepository;
             _mapper = mapper;
+            _loggedUserId = usuarioService.GetUserId();
         }
 
         public async Task<List<ReceitaViewModel>> Handle(GetReceitasByMonthQuery request, CancellationToken cancellationToken)
         {
-            var receitasDoMes = await _queryRepository.GetReceitasByMonthAsync(request.Mes, request.Ano);
+            var receitasDoMes = await _queryRepository.GetReceitasByMonthAndUserAsync(request.Mes, request.Ano, _loggedUserId);
 
             return _mapper.Map<List<ReceitaViewModel>>(receitasDoMes);
         }

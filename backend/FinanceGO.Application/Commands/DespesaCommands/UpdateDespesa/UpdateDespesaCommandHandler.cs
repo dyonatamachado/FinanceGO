@@ -44,7 +44,9 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
 
         private async Task<bool> VerificarSeDespesaDuplicada(UpdateDespesaCommand request)
         {
-            var despesasDoMesmoMes = await _queryRepository.GetDespesasByMonthAsync(request.Data.Month, request.Data.Year);
+            var despesasDoMesmoMes = await _queryRepository
+                .GetDespesasByMonthAndUserAsync(request.Data.Month, request.Data.Year, _requirement.GetUserId());
+
             return despesasDoMesmoMes.Exists(d => d.Descricao == request.Descricao);
         }   
     }

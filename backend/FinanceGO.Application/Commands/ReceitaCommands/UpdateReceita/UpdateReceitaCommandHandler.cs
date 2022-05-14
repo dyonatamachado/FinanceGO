@@ -42,7 +42,7 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
         private async Task<bool> VerificarSeReceitaDuplicada(UpdateReceitaCommand request)
         {
             var receitasDoMesmoMes = await _queryRepository
-                .GetReceitasByMonthAsync(request.Data.Month, request.Data.Year);
+                .GetReceitasByMonthAndUserAsync(request.Data.Month, request.Data.Year, _requirement.GetUserId());
             
             return receitasDoMesmoMes.Exists(r => r.Descricao == request.Descricao);
         }

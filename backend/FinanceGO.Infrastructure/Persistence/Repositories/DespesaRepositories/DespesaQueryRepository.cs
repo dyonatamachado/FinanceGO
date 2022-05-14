@@ -22,15 +22,15 @@ namespace FinanceGO.Infrastructure.Persistence.Repositories.DespesaRepositories
             return await _context.Despesas.SingleOrDefaultAsync(d => d.Id == id);
         }
 
-        public async Task<List<Despesa>> GetDespesasAsync()
+        public async Task<List<Despesa>> GetDespesasByUserAsync(int userId)
         {
-            return await _context.Despesas.ToListAsync();
+            return await _context.Despesas.Where(d => d.UsuarioId == userId).ToListAsync();
         }
 
-        public async Task<List<Despesa>> GetDespesasByMonthAsync(int mes, int ano)
+        public async Task<List<Despesa>> GetDespesasByMonthAndUserAsync(int mes, int ano, int userId)
         {
             return await _context.Despesas
-                .Where(d => d.Data.Month == mes && d.Data.Year == ano)
+                .Where(d => d.Data.Month == mes && d.Data.Year == ano && d.UsuarioId == userId)
                 .ToListAsync();
         }
     }

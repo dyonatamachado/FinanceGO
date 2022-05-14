@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FinanceGO.Application.InputModels.DespesaInputModels;
 using FinanceGO.Core.Enums;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.UserServices;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
@@ -26,5 +27,6 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
         public double Valor { get; private set; }
         public DateTime Data { get; private set; }
         public Categoria Categoria { get; private set; }
+        public int UsuarioId { get; private set; }
     }
 }

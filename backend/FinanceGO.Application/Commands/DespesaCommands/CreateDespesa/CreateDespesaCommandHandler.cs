@@ -8,6 +8,7 @@ using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.DespesaRepositories;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.UserServices;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
@@ -18,7 +19,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
         private readonly IDespesaQueryRepository _queryRepository;
         private readonly IMapper _mapper;
 
-        public CreateDespesaCommandHandler(IDespesaCommandRepository commandRepository, IDespesaQueryRepository queryRepository, IMapper mapper)
+        public CreateDespesaCommandHandler(IDespesaCommandRepository commandRepository, IDespesaQueryRepository queryRepository, IMapper mapper, ILoggedUserService loggedUser)
         {
             _commandRepository = commandRepository;
             _queryRepository = queryRepository;
@@ -42,7 +43,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
         private async Task<bool> VerificarSeDespesaDuplicada(CreateDespesaCommand request)
         {
             var despesasDoMesmoMes = await _queryRepository
-                .GetDespesasByMonthAsync(request.Data.Month, request.Data.Year);
+                .GetDespesasByMonthAndUserAsync(request.Data.Month, request.Data.Year, request.UsuarioId);
 
             return despesasDoMesmoMes.Exists(d => d.Descricao == request.Descricao);
         }

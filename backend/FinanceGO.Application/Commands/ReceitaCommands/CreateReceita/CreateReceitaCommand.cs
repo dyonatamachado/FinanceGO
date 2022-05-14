@@ -8,12 +8,12 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.CreateReceita
 {
     public class CreateReceitaCommand : IRequest<Result>
     {
-        public CreateReceitaCommand(string descricao, double valor, DateTime data, ILoggedUserService usuario)
+        public CreateReceitaCommand(string descricao, double valor, DateTime data, ILoggedUserService usuarioService)
         {
             Descricao = descricao;
             Valor = valor;
             Data = data;
-            UsuarioId = usuario.GetUserId();
+            UsuarioId = usuarioService.GetUserId();
         }
 
         [Required]

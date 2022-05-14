@@ -8,6 +8,7 @@ namespace FinanceGO.Core.Authorization
 {
     public interface IMesmoUsuarioAuthorizationRequirement
     {
+        int GetUserId();
         bool VerificarDespesaMesmoUsuario(Despesa despesa);
         bool VerificarReceitaMesmoUsuario(Receita receita);
     }
