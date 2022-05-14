@@ -22,11 +22,6 @@ namespace FinanceGO.Infrastructure.Authorization
             return _user.GetUserId() == despesa.UsuarioId;
         }
 
-        public bool VerificarMesmoUsuario(Usuario usuario)
-        {
-            return _user.GetUserId() == usuario.Id;
-        }
-
         public bool VerificarReceitaMesmoUsuario(Receita receita)
         {
             return _user.GetUserId() == receita.UsuarioId;

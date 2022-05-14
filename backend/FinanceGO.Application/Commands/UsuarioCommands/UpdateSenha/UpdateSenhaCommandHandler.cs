@@ -25,33 +25,17 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateSenha
         public async Task<Result> Handle(UpdateSenhaCommand request, CancellationToken cancellationToken)
         {
             var usuario = await _queryRepository.GetUsuarioByIdAsync(request.Id);
-            if(usuario == null) return new RegistroNaoEncontradoResult();
+            var emailInformado = request.Email;
+            var senhaAtualInformadaHash = _authenticationService.ComputeSha256Hash(request.SenhaAtual);
 
-            var dadosInformadosConferem = VerificarDadosInformados(request, usuario);
-
-            if(!dadosInformadosConferem) return new DadosInformadosNaoConferemResult();
-            // else if(!usuarioAutorizado) return new UsuarioNaoAutorizadoResult();
+            if(usuario.Email != emailInformado || usuario.Senha != senhaAtualInformadaHash)
+                return new DadosInformadosNaoConferemResult();
 
             var novaSenhaHash = _authenticationService.ComputeSha256Hash(request.NovaSenha);
             usuario.AlterarSenha(novaSenhaHash);
+
             await _commandRepository.UpdatePasswordAsync(usuario);
             return new RegistroAtualizadoComSucessoResult();
-        }
-
-        private Task VerificarSeUsuarioAutorizado(UpdateSenhaCommand request)
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool VerificarDadosInformados(UpdateSenhaCommand request, Usuario usuario)
-        {
-            var senhaAtualInformadaHash = _authenticationService.ComputeSha256Hash(request.SenhaAtual);
-            var emailInformado = request.Email;
-            var idInformadoNaRequisicao = request.Id;
-
-            return senhaAtualInformadaHash == usuario.Senha && 
-                emailInformado == usuario.Email && 
-                idInformadoNaRequisicao == usuario.Id;
         }
     }
 }

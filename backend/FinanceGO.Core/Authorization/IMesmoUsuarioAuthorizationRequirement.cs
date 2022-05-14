@@ -10,6 +10,5 @@ namespace FinanceGO.Core.Authorization
     {
         bool VerificarDespesaMesmoUsuario(Despesa despesa);
         bool VerificarReceitaMesmoUsuario(Receita receita);
-        bool VerificarMesmoUsuario(Usuario usuario);
     }
 }

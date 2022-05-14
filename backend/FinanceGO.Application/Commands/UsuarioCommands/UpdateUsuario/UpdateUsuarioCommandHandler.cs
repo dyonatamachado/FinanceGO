@@ -26,7 +26,6 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario
         public async Task<Result> Handle(UpdateUsuarioCommand request, CancellationToken cancellationToken)
         {
             var usuario = await _queryRepository.GetUsuarioByIdAsync(request.Id);
-            if(usuario == null) return new RegistroNaoEncontradoResult();
 
             var existeUsuarioCadastradoComMesmoEmail = await VerificarSeExisteUsuarioComMesmoEmail(request.Email);
             if(existeUsuarioCadastradoComMesmoEmail) return new RegistroDuplicadoResult();
@@ -40,10 +39,7 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario
         private async Task<bool> VerificarSeExisteUsuarioComMesmoEmail(string email)
         {
             var possivelUsuarioComMesmoEmail = await _queryRepository.GetUsuarioByEmailAsync(email);
-            
-            if(possivelUsuarioComMesmoEmail == null) 
-                return false;
-
+            if(possivelUsuarioComMesmoEmail == null) return false;
             return true;
         }
     }
