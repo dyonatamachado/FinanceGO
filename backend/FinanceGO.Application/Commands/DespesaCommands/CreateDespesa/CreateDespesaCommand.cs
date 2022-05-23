@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using FinanceGO.Application.InputModels.DespesaInputModels;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Enums;
 using FinanceGO.Core.Results;
@@ -13,25 +14,19 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
 {
     public class CreateDespesaCommand : IRequest<Result>
     {
-        public CreateDespesaCommand(string descricao, double valor, DateTime data, ILoggedUserService usuarioService, Categoria categoria = 0)
+        public CreateDespesaCommand(CreateDespesaInputModel inputModel, int usuarioId)
         {
-            Descricao = descricao;
-            Valor = valor;
-            Data = data;
-            Categoria = categoria;
-            UsuarioId = usuarioService.GetUserId();
+            Descricao = inputModel.Descricao;
+            Valor = inputModel.Valor;
+            Data = inputModel.Data;
+            Categoria = inputModel.Categoria;
+            UsuarioId = usuarioId;
         }
 
-        [Required]
         public string Descricao { get; set; }
-        [Required]
         public double Valor { get; set; }
-        [Required]
         public DateTime Data { get; set; }
-        [Required]
-        [Range(0, 7, ErrorMessage = "O dado de Categoria não é obrigatório, porém só aceita valores inteiros entre 0 e 7.")]
         public Categoria Categoria { get; set; }
-        [Required]
         public int UsuarioId { get; private set; }
     }
 }

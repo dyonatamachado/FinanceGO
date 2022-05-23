@@ -10,3 +10,15 @@
 /home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.dll
 /home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/ref/FinanceGO.Core.dll
 /home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/Debug/net5.0/FinanceGO.Core.pdb
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\bin\Debug\net5.0\FinanceGO.Core.deps.json
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\bin\Debug\net5.0\FinanceGO.Core.dll
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\bin\Debug\net5.0\ref\FinanceGO.Core.dll
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\bin\Debug\net5.0\FinanceGO.Core.pdb
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\FinanceGO.Core.csproj.AssemblyReference.cache
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\FinanceGO.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\FinanceGO.Core.AssemblyInfoInputs.cache
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\FinanceGO.Core.AssemblyInfo.cs
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\FinanceGO.Core.csproj.CoreCompileInputs.cache
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\FinanceGO.Core.dll
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\ref\FinanceGO.Core.dll
+C:\Users\colaborador\Desktop\Pessoais\Projetos\FinanceGO\FinanceGO\backend\FinanceGO.Core\obj\Debug\net5.0\FinanceGO.Core.pdb

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FinanceGO.Application.Commands.DespesaCommands.CreateDespesa;
+using FinanceGO.Application.InputModels.DespesaInputModels;
 using FinanceGO.Core.Enums;
 using FinanceGO.Core.UserServices;
 using Moq;
@@ -19,10 +20,13 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.CreateD
             var mock = new Mock<ILoggedUserService>();
             mock.Setup(m => m.GetUserId()).Returns(1);
             var loggedUser = mock.Object;
+            var loggedUserId = loggedUser.GetUserId();
+
+            var inputModel = new CreateDespesaInputModel("Aluguel", 600, DateTime.Now, Categoria.Moradia);
 
             //ACT
 
-            var command = new CreateDespesaCommand("Aluguel", 600, DateTime.Now, loggedUser, (Categoria) 3);
+            var command = new CreateDespesaCommand(inputModel, loggedUserId);
 
             //ASSERT
 

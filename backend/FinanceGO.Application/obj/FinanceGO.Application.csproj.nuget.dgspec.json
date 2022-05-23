@@ -1,33 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj": {}
+    "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Application\\FinanceGO.Application.csproj": {}
   },
   "projects": {
-    "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj": {
+    "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Application\\FinanceGO.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj",
+        "projectUniqueName": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Application\\FinanceGO.Application.csproj",
         "projectName": "FinanceGO.Application",
-        "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj",
-        "packagesPath": "/home/dyonata/.nuget/packages/",
-        "outputPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/obj/",
+        "projectPath": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Application\\FinanceGO.Application.csproj",
+        "packagesPath": "C:\\Users\\colaborador\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/dyonata/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\colaborador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj": {
-                "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj"
+              "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Core\\FinanceGO.Core.csproj": {
+                "projectPath": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Core\\FinanceGO.Core.csproj"
               }
             }
           }
@@ -66,26 +68,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj": {
+    "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Core\\FinanceGO.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj",
+        "projectUniqueName": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Core\\FinanceGO.Core.csproj",
         "projectName": "FinanceGO.Core",
-        "projectPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/FinanceGO.Core.csproj",
-        "packagesPath": "/home/dyonata/.nuget/packages/",
-        "outputPath": "/home/dyonata/FinanceGO/backend/FinanceGO.Core/obj/",
+        "projectPath": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Core\\FinanceGO.Core.csproj",
+        "packagesPath": "C:\\Users\\colaborador\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/dyonata/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\colaborador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -118,7 +122,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

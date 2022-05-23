@@ -1,19 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "Aqa+jLkAHlm/GwLbXQCFagq8dUCfOOw7E45mUSmJtnNyznGY9Eq1fICoD3DPTW+0bgqSFGfAM1cQxrpSCfalWg==",
+  "dgSpecHash": "gVdAX0TKyGtrfWna+v0VHVyKPrmkwHMbQjX4c5KxKIYmorBfxLtYrNTVlge0fT2YG82uZEXIV0wtSE1v3R7o4A==",
   "success": true,
-  "projectFilePath": "/home/dyonata/FinanceGO/backend/FinanceGO.Application/FinanceGO.Application.csproj",
+  "projectFilePath": "C:\\Users\\colaborador\\Desktop\\Pessoais\\Projetos\\FinanceGO\\FinanceGO\\backend\\FinanceGO.Application\\FinanceGO.Application.csproj",
   "expectedPackageFiles": [
-    "/home/dyonata/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/mediatr/10.0.1/mediatr.10.0.1.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/10.0.1/mediatr.extensions.microsoft.dependencyinjection.10.0.1.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
-    "/home/dyonata/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\colaborador\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\10.0.1\\mediatr.extensions.microsoft.dependencyinjection.10.0.1.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\colaborador\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
