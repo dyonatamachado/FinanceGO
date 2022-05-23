@@ -16,24 +16,24 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
 {
     public class CreateDespesaCommandHandler : IRequestHandler<CreateDespesaCommand, Result>
     {
-        private readonly IDespesaCommandRepository _commandRepository;
+        private readonly IDespesaCommandRepository _repository;
         private readonly IMapper _mapper;
         private readonly IDespesaDuplicadaValidator _validator;
 
-        public CreateDespesaCommandHandler(IDespesaCommandRepository commandRepository, IMapper mapper, IDespesaDuplicadaValidator validator)
+        public CreateDespesaCommandHandler(IDespesaCommandRepository repository, IMapper mapper, IDespesaDuplicadaValidator validator)
         {
-            _commandRepository = commandRepository;
+            _repository = repository;
             _mapper = mapper;
             _validator = validator;
         }
 
         public async Task<Result> Handle(CreateDespesaCommand request, CancellationToken cancellationToken)
         {
-            var despesaIsDuplicada = await _validator.VerificarSeDespesaDuplicada(request.Data, request.Descricao, request.UsuarioId);
+            var despesaIsDuplicada = await _validator.DespesaIsDuplicada(request.Data, request.Descricao, request.UsuarioId);
             if(despesaIsDuplicada) return new RegistroDuplicadoResult();
 
             var despesa = _mapper.Map<Despesa>(request);
-            await _commandRepository.CreateDespesaAsync(despesa);
+            await _repository.CreateDespesaAsync(despesa);
 
             var despesaViewModel = _mapper.Map<DespesaViewModel>(despesa);
             return new CriadoComSucessoResult(despesaViewModel);
