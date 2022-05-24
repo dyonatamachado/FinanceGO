@@ -45,7 +45,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.ReceitaCommands.CreateR
         }
 
         [Fact]
-        public async void RetornaCriadoComSucessoResultDadoDespesaNaoDuplicada()
+        public async void RetornaCriadoComSucessoResultDadoReceitaNaoDuplicada()
         {
             //ARRANGE
             var inputModel = new CreateReceitaInputModel("Salário", 1500, DateTime.Now.AddDays(-3));
