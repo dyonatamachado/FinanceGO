@@ -11,6 +11,7 @@ using FinanceGO.Application.Queries.ReceitaQueries.GetReceitas;
 using FinanceGO.Application.Queries.ReceitaQueries.GetReceitasByMonth;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.UserServices;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,10 +24,12 @@ namespace FinanceGO.API.Controllers
     public class ReceitaController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly int _loggedUserId;
 
-        public ReceitaController(IMediator mediator)
+        public ReceitaController(IMediator mediator, ILoggedUserService usuarioService)
         {
             _mediator = mediator;
+            _loggedUserId = usuarioService.GetUserId();
         }
 
         [HttpGet]
@@ -71,8 +74,9 @@ namespace FinanceGO.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateReceita([FromBody] CreateReceitaCommand command)
+        public async Task<IActionResult> CreateReceita([FromBody] CreateReceitaInputModel inputModel)
         {
+            var command = new CreateReceitaCommand(inputModel, _loggedUserId);
             var resultado = await _mediator.Send(command);
 
             if(resultado is RegistroDuplicadoResult)

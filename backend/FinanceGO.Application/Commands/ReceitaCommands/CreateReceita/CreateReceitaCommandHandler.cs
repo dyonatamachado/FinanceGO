@@ -5,41 +5,34 @@ using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.ReceitaRepositories;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.RulesValidators;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.ReceitaCommands.CreateReceita
 {
     public class CreateReceitaCommandHandler : IRequestHandler<CreateReceitaCommand, Result>
     {
-        private readonly IReceitaQueryRepository _queryRepository;
-        private readonly IReceitaCommandRepository _commandRepository;
+        private readonly IReceitaCommandRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IReceitaDuplicadaValidator _validator;
 
-        public CreateReceitaCommandHandler(IReceitaQueryRepository queryRepository, IReceitaCommandRepository commandRepository, IMapper mapper)
+        public CreateReceitaCommandHandler(IReceitaCommandRepository repository, IMapper mapper, IReceitaDuplicadaValidator validator)
         {
-            _queryRepository = queryRepository;
-            _commandRepository = commandRepository;
+            _repository = repository;
             _mapper = mapper;
+            _validator = validator;
         }
 
         public async Task<Result> Handle(CreateReceitaCommand request, CancellationToken cancellationToken)
         {
-            var receitaIsDuplicada = await VerificarSeReceitaDuplicada(request);
+            var receitaIsDuplicada = await _validator.ReceitaIsDuplicada(request.Data, request.Descricao, request.UsuarioId);
             if(receitaIsDuplicada) return new RegistroDuplicadoResult();
 
             var receita = _mapper.Map<Receita>(request);
-            await _commandRepository.CreateReceitaAsync(receita);
+            await _repository.CreateReceitaAsync(receita);
 
             var receitaViewModel = _mapper.Map<ReceitaViewModel>(receita);
             return new CriadoComSucessoResult(receitaViewModel);
-        }
-
-        private async Task<bool> VerificarSeReceitaDuplicada(CreateReceitaCommand request)
-        {
-            var receitasDoMesmoMes = await _queryRepository
-                .GetReceitasByMonthAndUserAsync(request.Data.Month, request.Data.Year, request.UsuarioId);
-            
-            return receitasDoMesmoMes.Exists(r => r.Descricao == request.Descricao);
         }
     }
 }

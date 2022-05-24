@@ -1,26 +1,26 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace FinanceGO.Core.Entities
+namespace FinanceGO.Application.InputModels.ReceitaInputModels
 {
-    public class Receita
+    public class CreateReceitaInputModel
     {
-        public Receita(string descricao, double valor, DateTime data, int usuarioId)
+        public CreateReceitaInputModel(string descricao, double valor, DateTime data)
         {
             Descricao = descricao;
             Valor = valor;
             Data = data;
-            UsuarioId = usuarioId;
         }
 
-        public int Id { get; set; }
+        [Required]
         public string Descricao { get; set; }
+        [Required]
         public double Valor { get; set; }
+        [Required]
         public DateTime Data { get; set; }
-        public int UsuarioId { get; private set; }
-        public Usuario Usuario { get; private set; }
     }
 }
