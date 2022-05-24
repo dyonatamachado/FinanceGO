@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FinanceGO.Core.Repositories.UsuarioRepositories;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.RulesValidators;
 using FinanceGO.Core.UserServices;
 using MediatR;
 
@@ -17,34 +18,29 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateUsuario
         private readonly IUsuarioCommandRepository _commandRepository;
         private readonly IMapper _mapper;
         private readonly int _loggedUserId;
+        private readonly IEmailDuplicadoValidator _validator;
 
-        public UpdateUsuarioCommandHandler(IUsuarioQueryRepository queryRepository, IUsuarioCommandRepository commandRepository, IMapper mapper, ILoggedUserService usuarioService)
+        public UpdateUsuarioCommandHandler(IUsuarioQueryRepository queryRepository, IUsuarioCommandRepository commandRepository, IMapper mapper, ILoggedUserService usuarioService, IEmailDuplicadoValidator validator)
         {
             _queryRepository = queryRepository;
             _commandRepository = commandRepository;
             _mapper = mapper;
             _loggedUserId = usuarioService.GetUserId();
+            _validator = validator;
         }
 
         public async Task<Result> Handle(UpdateUsuarioCommand request, CancellationToken cancellationToken)
         {
-            if(request.Id != _loggedUserId) return new UsuarioNaoAutorizadoResult();
+            if (request.Id != _loggedUserId) return new UsuarioNaoAutorizadoResult();
+
+            var existeUsuarioCadastradoComMesmoEmail = await _validator.EmailIsDuplicado(request.Email);
+            if (existeUsuarioCadastradoComMesmoEmail) return new RegistroDuplicadoResult();
+
             var usuario = await _queryRepository.GetUsuarioByIdAsync(request.Id);
-
-            var existeUsuarioCadastradoComMesmoEmail = await VerificarSeExisteUsuarioComMesmoEmail(request.Email);
-            if(existeUsuarioCadastradoComMesmoEmail) return new RegistroDuplicadoResult();
-
             usuario = _mapper.Map(request, usuario);
             await _commandRepository.UpdateUsuarioAsync(usuario);
 
             return new RegistroAtualizadoComSucessoResult();
-        }
-
-        private async Task<bool> VerificarSeExisteUsuarioComMesmoEmail(string email)
-        {
-            var possivelUsuarioComMesmoEmail = await _queryRepository.GetUsuarioByEmailAsync(email);
-            if(possivelUsuarioComMesmoEmail == null) return false;
-            return true;
         }
     }
 }

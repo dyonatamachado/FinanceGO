@@ -17,6 +17,8 @@ using FinanceGO.Core.Authentication;
 using FinanceGO.Infrastructure.Authentication;
 using FinanceGO.Core.Authorization;
 using FinanceGO.Infrastructure.Authorization;
+using FinanceGO.Core.RulesValidators;
+using FinanceGO.Application.Validators.RulesValidators;
 
 namespace FinanceGO.API.ServiceExtensions
 {
@@ -30,6 +32,13 @@ namespace FinanceGO.API.ServiceExtensions
             services.AddScoped<IReceitaQueryRepository, ReceitaQueryRepository>();
             services.AddScoped<IUsuarioCommandRepository, UsuarioCommandRepository>();
             services.AddScoped<IUsuarioQueryRepository, UsuarioQueryRepository>();
+        }
+
+        public static void AddRulesValidators(this IServiceCollection services)
+        {
+            services.AddScoped<IEmailDuplicadoValidator, EmailDuplicadoValidator>();
+            services.AddScoped<IDespesaDuplicadaValidator, DespesaDuplicadaValidator>();
+            services.AddScoped<IReceitaDuplicadaValidator, ReceitaDuplicadaValidator>();
         }
 
         public static void AddAuthServices(this IServiceCollection services)

@@ -35,6 +35,7 @@ namespace FinanceGO.API
             services.AddDbContext<FinanceGODbContext>(options => options.UseInMemoryDatabase("FinanceGO"));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddRepositories();
+            services.AddRulesValidators();
             services.AddAuthServices();
             services.AddUserServices();
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));

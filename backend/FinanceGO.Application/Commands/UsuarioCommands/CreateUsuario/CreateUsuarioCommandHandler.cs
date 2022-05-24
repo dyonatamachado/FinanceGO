@@ -9,29 +9,29 @@ using FinanceGO.Core.Authentication;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.UsuarioRepositories;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.RulesValidators;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.UsuarioCommands.CreateUsuario
 {
     public class CreateUsuarioCommandHandler : IRequestHandler<CreateUsuarioCommand, Result>
     {
-        private readonly IUsuarioQueryRepository _queryRepository;
         private readonly IUsuarioCommandRepository _commandRepository;
         private readonly IAuthenticationService _authenticationService;
         private readonly IMapper _mapper;
+        private readonly IEmailDuplicadoValidator _validator;
 
-
-        public CreateUsuarioCommandHandler(IUsuarioCommandRepository commandRepository, IAuthenticationService authenticationService, IMapper mapper, IUsuarioQueryRepository queryRepository)
+        public CreateUsuarioCommandHandler(IUsuarioCommandRepository commandRepository, IAuthenticationService authenticationService, IMapper mapper, IEmailDuplicadoValidator validator)
         {
             _commandRepository = commandRepository;
             _authenticationService = authenticationService;
             _mapper = mapper;
-            _queryRepository = queryRepository;
+            _validator = validator;
         }
 
         public async Task<Result> Handle(CreateUsuarioCommand request, CancellationToken cancellationToken)
         {
-            var existeUsuarioCadastradoComMesmoEmail = await VerificarSeExisteUsuarioComMesmoEmail(request.Email);
+            var existeUsuarioCadastradoComMesmoEmail = await _validator.EmailIsDuplicado(request.Email);
             if(existeUsuarioCadastradoComMesmoEmail) return new RegistroDuplicadoResult();
             
             var senhaHash = _authenticationService.ComputeSha256Hash(request.Senha);
@@ -41,16 +41,6 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.CreateUsuario
 
             var usuarioViewModel = _mapper.Map<UsuarioViewModel>(usuario);
             return new CriadoComSucessoResult(usuarioViewModel);                        
-        }
-
-        private async Task<bool> VerificarSeExisteUsuarioComMesmoEmail(string email)
-        {
-            var possivelUsuarioComMesmoEmail = await _queryRepository.GetUsuarioByEmailAsync(email);
-            
-            if(possivelUsuarioComMesmoEmail == null) 
-                return false;
-
-            return true;
         }
     }
 }

@@ -27,10 +27,10 @@ namespace FinanceGO.Application.Commands.UsuarioCommands.UpdateSenha
 
         public async Task<Result> Handle(UpdateSenhaCommand request, CancellationToken cancellationToken)
         {
-            if(request.Id != _loggedUserId)
-                return new UsuarioNaoAutorizadoResult();
+            if(request.Id != _loggedUserId) return new UsuarioNaoAutorizadoResult();
 
             var usuario = await _queryRepository.GetUsuarioByIdAsync(request.Id);
+
             var emailInformado = request.Email;
             var senhaAtualInformadaHash = _authenticationService.ComputeSha256Hash(request.SenhaAtual);
 

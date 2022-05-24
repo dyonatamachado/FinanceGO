@@ -4,6 +4,7 @@ using AutoMapper;
 using FinanceGO.Core.Authorization;
 using FinanceGO.Core.Repositories.ReceitaRepositories;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.RulesValidators;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
@@ -14,6 +15,7 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
         private readonly IReceitaCommandRepository _commandRepository;
         private readonly IMapper _mapper;
         private readonly IMesmoUsuarioAuthorizationRequirement _requirement;
+        private readonly IReceitaDuplicadaValidator _validator;
 
         public UpdateReceitaCommandHandler(IReceitaQueryRepository queryRepository, IReceitaCommandRepository commandRepository, IMapper mapper, IMesmoUsuarioAuthorizationRequirement requirement)
         {
@@ -31,20 +33,12 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
             var usuarioAutorizado = _requirement.VerificarReceitaMesmoUsuario(receitaASerAlterada);
             if(!usuarioAutorizado) return new UsuarioNaoAutorizadoResult();
 
-            var receitaIsDuplicada = await VerificarSeReceitaDuplicada(request);
+            var receitaIsDuplicada = await _validator.ReceitaIsDuplicada(request.Data, request.Descricao, _requirement.GetUserId());
             if(receitaIsDuplicada) return new RegistroDuplicadoResult();
 
             var receitaComDadosAlterados = _mapper.Map(request, receitaASerAlterada);
             await _commandRepository.UpdateReceitaAsync(receitaComDadosAlterados);
             return new RegistroAtualizadoComSucessoResult();
-        }
-
-        private async Task<bool> VerificarSeReceitaDuplicada(UpdateReceitaCommand request)
-        {
-            var receitasDoMesmoMes = await _queryRepository
-                .GetReceitasByMonthAndUserAsync(request.Data.Month, request.Data.Year, _requirement.GetUserId());
-            
-            return receitasDoMesmoMes.Exists(r => r.Descricao == request.Descricao);
         }
     }
 }

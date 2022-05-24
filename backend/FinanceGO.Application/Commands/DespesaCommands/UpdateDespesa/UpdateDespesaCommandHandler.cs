@@ -7,6 +7,7 @@ using AutoMapper;
 using FinanceGO.Core.Authorization;
 using FinanceGO.Core.Repositories.DespesaRepositories;
 using FinanceGO.Core.Results;
+using FinanceGO.Core.RulesValidators;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
@@ -17,6 +18,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
         private readonly IDespesaCommandRepository _commandRepository;
         private readonly IMapper _mapper;
         private readonly IMesmoUsuarioAuthorizationRequirement _requirement;
+        private readonly IDespesaDuplicadaValidator _validator;
 
         public UpdateDespesaCommandHandler(IDespesaQueryRepository queryRepository, IDespesaCommandRepository commandRepository, IMapper mapper, IMesmoUsuarioAuthorizationRequirement requirement)
         {
@@ -34,20 +36,12 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
             var usuarioAutorizado = _requirement.VerificarDespesaMesmoUsuario(despesaASerAlterada);
             if(!usuarioAutorizado) return new UsuarioNaoAutorizadoResult();
             
-            var despesaIsDuplicada = await VerificarSeDespesaDuplicada(request);
+            var despesaIsDuplicada = await _validator.DespesaIsDuplicada(request.Data, request.Descricao, _requirement.GetUserId());
             if(despesaIsDuplicada) return new RegistroDuplicadoResult();
 
             var despesaComDadosAlterados = _mapper.Map(request, despesaASerAlterada);
             await _commandRepository.UpdateDespesaAsync(despesaComDadosAlterados);
             return new RegistroAtualizadoComSucessoResult();
         }
-
-        private async Task<bool> VerificarSeDespesaDuplicada(UpdateDespesaCommand request)
-        {
-            var despesasDoMesmoMes = await _queryRepository
-                .GetDespesasByMonthAndUserAsync(request.Data.Month, request.Data.Year, _requirement.GetUserId());
-
-            return despesasDoMesmoMes.Exists(d => d.Descricao == request.Descricao);
-        }   
     }
 }
