@@ -92,7 +92,7 @@ namespace FinanceGO.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateDespesa(int id, [FromBody] UpdateDespesaInputModel inputModel)
         {
-            var command = new UpdateDespesaCommand(id, inputModel);
+            var command = new UpdateDespesaCommand(inputModel, id);
             var resultado = await _mediator.Send(command);
 
             if(resultado is RegistroNaoEncontradoResult) 

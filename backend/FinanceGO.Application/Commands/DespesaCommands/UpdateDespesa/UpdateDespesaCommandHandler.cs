@@ -20,12 +20,13 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
         private readonly IMesmoUsuarioAuthorizationRequirement _requirement;
         private readonly IDespesaDuplicadaValidator _validator;
 
-        public UpdateDespesaCommandHandler(IDespesaQueryRepository queryRepository, IDespesaCommandRepository commandRepository, IMapper mapper, IMesmoUsuarioAuthorizationRequirement requirement)
+        public UpdateDespesaCommandHandler(IDespesaQueryRepository queryRepository, IDespesaCommandRepository commandRepository, IMapper mapper, IMesmoUsuarioAuthorizationRequirement requirement, IDespesaDuplicadaValidator validator)
         {
             _queryRepository = queryRepository;
             _commandRepository = commandRepository;
             _mapper = mapper;
             _requirement = requirement;
+            _validator = validator;
         }
 
         public async Task<Result> Handle(UpdateDespesaCommand request, CancellationToken cancellationToken)

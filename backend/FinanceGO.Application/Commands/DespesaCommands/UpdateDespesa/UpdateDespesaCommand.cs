@@ -13,7 +13,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
 {
     public class UpdateDespesaCommand : IRequest<Result>
     {
-        public UpdateDespesaCommand(int id, UpdateDespesaInputModel inputModel)
+        public UpdateDespesaCommand(UpdateDespesaInputModel inputModel, int id)
         {
             Id = id;
             Descricao = inputModel.Descricao;
