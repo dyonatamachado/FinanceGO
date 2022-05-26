@@ -1,19 +1,15 @@
 ﻿using AutoMapper;
 using FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa;
 using FinanceGO.Application.InputModels.DespesaInputModels;
+using FinanceGO.Application.Validators.IRulesValidators;
 using FinanceGO.Core.Authorization;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Enums;
 using FinanceGO.Core.Repositories.DespesaRepositories;
 using FinanceGO.Core.Results;
-using FinanceGO.Core.RulesValidators;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa.UpdateDespesaCommandHandlerTests
@@ -25,7 +21,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
         {
             //ARRANGE
             var inputModel = new UpdateDespesaInputModel("Aluguel", 700, DateTime.Now, Categoria.Moradia);
-            var command = new UpdateDespesaCommand(inputModel, 1);
+            var command = new global::FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa.UpdateDespesaCommand(inputModel, 1);
 
             var mockQueryRepo = new Mock<IDespesaQueryRepository>();
             mockQueryRepo.Setup(mqr => mqr.GetDespesaByIdAsync(command.Id)).ReturnsAsync((Despesa) null);
@@ -60,7 +56,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
             //ARRANGE
 
             var inputModel = new UpdateDespesaInputModel("Aluguel", 700, DateTime.Now, Categoria.Moradia);
-            var command = new UpdateDespesaCommand(inputModel, 1);
+            var command = new global::FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa.UpdateDespesaCommand(inputModel, 1);
             var despesa = new Despesa("Aluguel", 650, DateTime.Now, Categoria.Moradia, 2);
 
             var mockQueryRepo = new Mock<IDespesaQueryRepository>();
@@ -93,12 +89,12 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
         }
 
         [Fact]
-        public async void RetornaRegistroDuplicadoResultDadoExisteOutraDespesaCadastradaComMesmaDescricaoParaOMesmoMesEMesmoUsuario()
+        public async void RetornaRegistroDuplicadoResultDadoExisteOutraDespesaCadastradaComMesmaDescricaoParaOMesmoMesMesmoUsuario()
         {
             //ARRANGE
 
             var inputModel = new UpdateDespesaInputModel("Aluguel", 700, DateTime.Now, Categoria.Moradia);
-            var command = new UpdateDespesaCommand(inputModel, 1);
+            var command = new global::FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa.UpdateDespesaCommand(inputModel, 1);
             var despesa = new Despesa("Aluguel", 650, DateTime.Now, Categoria.Moradia, 1);
 
             var mockQueryRepo = new Mock<IDespesaQueryRepository>();
@@ -116,7 +112,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
             var mapper = mockMapper.Object;
 
             var mockValidator = new Mock<IDespesaDuplicadaValidator>();
-            mockValidator.Setup(mv => mv.DespesaIsDuplicada(command.Data, command.Descricao, command.UsuarioId)).ReturnsAsync(true);
+            mockValidator.Setup(mv => mv.DespesaIsDuplicada(command, 1)).ReturnsAsync(true);
             var validator = mockValidator.Object;
 
             var handler = new UpdateDespesaCommandHandler(queryRepo, commandRepo, mapper, requirement, validator);
@@ -137,7 +133,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
             //ARRANGE
 
             var inputModel = new UpdateDespesaInputModel("Aluguel", 700, DateTime.Now, Categoria.Moradia);
-            var command = new UpdateDespesaCommand(inputModel, 1);
+            var command = new global::FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa.UpdateDespesaCommand(inputModel, 1);
             var despesa = new Despesa("Aluguel", 650, DateTime.Now, Categoria.Moradia, 1);
             var despesaComDadosAlterados = new Despesa("Aluguel", 700, DateTime.Now, Categoria.Moradia, 1);
 
@@ -158,7 +154,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
             var requirement = mockRequirement.Object;
 
             var mockValidator = new Mock<IDespesaDuplicadaValidator>();
-            mockValidator.Setup(mv => mv.DespesaIsDuplicada(command.Data, command.Descricao, command.UsuarioId)).ReturnsAsync(false);
+            mockValidator.Setup(mv => mv.DespesaIsDuplicada(command, 1)).ReturnsAsync(false);
             var validator = mockValidator.Object;
 
             var handler = new UpdateDespesaCommandHandler(queryRepo, commandRepo, mapper, requirement, validator);

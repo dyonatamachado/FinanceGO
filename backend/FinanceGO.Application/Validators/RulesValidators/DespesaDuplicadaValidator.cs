@@ -1,10 +1,8 @@
-﻿using FinanceGO.Core.Entities;
+﻿using FinanceGO.Application.Commands.DespesaCommands.CreateDespesa;
+using FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa;
+using FinanceGO.Application.Validators.IRulesValidators;
 using FinanceGO.Core.Repositories.DespesaRepositories;
-using FinanceGO.Core.RulesValidators;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FinanceGO.Application.Validators.RulesValidators
@@ -17,11 +15,23 @@ namespace FinanceGO.Application.Validators.RulesValidators
             _repository = repository;
         }
 
-        public async Task<bool> DespesaIsDuplicada(DateTime data, string descricao, int userId)
+        public async Task<bool> DespesaIsDuplicada(UpdateDespesaCommand command, int loggedUserId)
         {
-            var despesasDoMesmoMes = await _repository.GetDespesasByMonthAndUserAsync(data.Month, data.Year, userId);
+            var despesasDoMesmoMes = await _repository.GetDespesasByMonthAndUserAsync(command.Data.Month, command.Data.Year, loggedUserId);
 
-            return despesasDoMesmoMes.Exists(d => d.Descricao == descricao);
+            var possivelDespesaDuplicada = despesasDoMesmoMes.SingleOrDefault(d => d.Descricao == command.Descricao);
+
+            if (possivelDespesaDuplicada.Id == command.Id) 
+                return false;
+            else 
+                return true;
+        }
+
+        public async Task<bool> DespesaIsDuplicada(CreateDespesaCommand command)
+        {
+            var despesasDoMesmoMes = await _repository.GetDespesasByMonthAndUserAsync(command.Data.Month, command.Data.Year, command.UsuarioId);
+
+            return despesasDoMesmoMes.Exists(d => d.Descricao == command.Descricao);
         }
     }
 }

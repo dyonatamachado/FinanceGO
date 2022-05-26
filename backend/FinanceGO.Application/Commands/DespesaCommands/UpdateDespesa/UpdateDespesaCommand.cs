@@ -27,6 +27,5 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
         public double Valor { get; private set; }
         public DateTime Data { get; private set; }
         public Categoria Categoria { get; private set; }
-        public int UsuarioId { get; private set; }
     }
 }

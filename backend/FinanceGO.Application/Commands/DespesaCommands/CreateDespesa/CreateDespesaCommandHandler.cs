@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using FinanceGO.Application.Validators.IRulesValidators;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.DespesaRepositories;
 using FinanceGO.Core.Results;
-using FinanceGO.Core.RulesValidators;
-using FinanceGO.Core.UserServices;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
@@ -29,7 +25,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.CreateDespesa
 
         public async Task<Result> Handle(CreateDespesaCommand request, CancellationToken cancellationToken)
         {
-            var despesaIsDuplicada = await _validator.DespesaIsDuplicada(request.Data, request.Descricao, request.UsuarioId);
+            var despesaIsDuplicada = await _validator.DespesaIsDuplicada(request);
             if(despesaIsDuplicada) return new RegistroDuplicadoResult();
 
             var despesa = _mapper.Map<Despesa>(request);

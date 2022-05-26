@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using FinanceGO.Application.Validators.IRulesValidators;
 using FinanceGO.Core.Authorization;
 using FinanceGO.Core.Repositories.DespesaRepositories;
 using FinanceGO.Core.Results;
-using FinanceGO.Core.RulesValidators;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
@@ -37,7 +34,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
             var usuarioAutorizado = _requirement.VerificarDespesaMesmoUsuario(despesaASerAlterada);
             if(!usuarioAutorizado) return new UsuarioNaoAutorizadoResult();
             
-            var despesaIsDuplicada = await _validator.DespesaIsDuplicada(request.Data, request.Descricao, _requirement.GetUserId());
+            var despesaIsDuplicada = await _validator.DespesaIsDuplicada(request, _requirement.GetUserId());
             if(despesaIsDuplicada) return new RegistroDuplicadoResult();
 
             var despesaComDadosAlterados = _mapper.Map(request, despesaASerAlterada);
