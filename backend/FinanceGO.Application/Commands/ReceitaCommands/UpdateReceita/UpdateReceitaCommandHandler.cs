@@ -17,12 +17,13 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
         private readonly IMesmoUsuarioAuthorizationRequirement _requirement;
         private readonly IReceitaDuplicadaValidator _validator;
 
-        public UpdateReceitaCommandHandler(IReceitaQueryRepository queryRepository, IReceitaCommandRepository commandRepository, IMapper mapper, IMesmoUsuarioAuthorizationRequirement requirement)
+        public UpdateReceitaCommandHandler(IReceitaQueryRepository queryRepository, IReceitaCommandRepository commandRepository, IMapper mapper, IMesmoUsuarioAuthorizationRequirement requirement, IReceitaDuplicadaValidator validator)
         {
             _queryRepository = queryRepository;
             _commandRepository = commandRepository;
             _mapper = mapper;
             _requirement = requirement;
+            _validator = validator;
         }
 
         public async Task<Result> Handle(UpdateReceitaCommand request, CancellationToken cancellationToken)

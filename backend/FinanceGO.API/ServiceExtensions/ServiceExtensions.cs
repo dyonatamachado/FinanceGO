@@ -19,6 +19,7 @@ using FinanceGO.Core.Authorization;
 using FinanceGO.Infrastructure.Authorization;
 using FinanceGO.Core.RulesValidators;
 using FinanceGO.Application.Validators.RulesValidators;
+using FinanceGO.Application.Validators.IRulesValidators;
 
 namespace FinanceGO.API.ServiceExtensions
 {

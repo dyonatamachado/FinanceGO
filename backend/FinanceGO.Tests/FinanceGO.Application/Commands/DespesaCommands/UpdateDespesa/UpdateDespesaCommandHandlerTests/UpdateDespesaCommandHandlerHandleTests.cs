@@ -89,12 +89,12 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
         }
 
         [Fact]
-        public async void RetornaRegistroDuplicadoResultDadoExisteOutraDespesaCadastradaComMesmaDescricaoParaOMesmoMesMesmoUsuario()
+        public async void RetornaRegistroDuplicadoResultDadoExisteOutraDespesaCadastradaComMesmaDescricaoParaOMesmoMesEMesmoUsuario()
         {
             //ARRANGE
 
             var inputModel = new UpdateDespesaInputModel("Aluguel", 700, DateTime.Now, Categoria.Moradia);
-            var command = new global::FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa.UpdateDespesaCommand(inputModel, 1);
+            var command = new UpdateDespesaCommand(inputModel, 1);
             var despesa = new Despesa("Aluguel", 650, DateTime.Now, Categoria.Moradia, 1);
 
             var mockQueryRepo = new Mock<IDespesaQueryRepository>();
@@ -106,13 +106,14 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.UpdateD
 
             var mockRequirement = new Mock<IMesmoUsuarioAuthorizationRequirement>();
             mockRequirement.Setup(mr => mr.VerificarDespesaMesmoUsuario(despesa)).Returns(true);
+            mockRequirement.Setup(mr => mr.GetUserId()).Returns(1);
             var requirement = mockRequirement.Object;
 
             var mockMapper = new Mock<IMapper>();
             var mapper = mockMapper.Object;
 
             var mockValidator = new Mock<IDespesaDuplicadaValidator>();
-            mockValidator.Setup(mv => mv.DespesaIsDuplicada(command, 1)).ReturnsAsync(true);
+            var teste = mockValidator.Setup(mv => mv.DespesaIsDuplicada(command, 1)).ReturnsAsync(true);
             var validator = mockValidator.Object;
 
             var handler = new UpdateDespesaCommandHandler(queryRepo, commandRepo, mapper, requirement, validator);

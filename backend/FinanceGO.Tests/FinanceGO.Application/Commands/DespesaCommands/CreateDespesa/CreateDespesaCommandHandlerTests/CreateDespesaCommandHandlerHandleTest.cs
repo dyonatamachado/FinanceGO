@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FinanceGO.Application.Commands.DespesaCommands.CreateDespesa;
 using FinanceGO.Application.InputModels.DespesaInputModels;
+using FinanceGO.Application.Validators.IRulesValidators;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Enums;
@@ -28,7 +29,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.CreateD
             var request = new CreateDespesaCommand(inputModel, 1);
 
             var mockValidator = new Mock<IDespesaDuplicadaValidator>();
-            mockValidator.Setup(mv => mv.DespesaIsDuplicada(request.Data, request.Descricao, request.UsuarioId)).ReturnsAsync(true);
+            mockValidator.Setup(mv => mv.DespesaIsDuplicada(request)).ReturnsAsync(true);
             var validator = mockValidator.Object;
 
             var mapper = new Mock<IMapper>().Object;
@@ -54,7 +55,7 @@ namespace FinanceGO.Tests.FinanceGO.Application.Commands.DespesaCommands.CreateD
             var despesaViewModel = new DespesaViewModel(1, despesa.Descricao, despesa.Valor, despesa.Data, despesa.Categoria);
 
             var mockValidator = new Mock<IDespesaDuplicadaValidator>();
-            mockValidator.Setup(mv => mv.DespesaIsDuplicada(request.Data, request.Descricao, request.UsuarioId)).ReturnsAsync(false);
+            mockValidator.Setup(mv => mv.DespesaIsDuplicada(request)).ReturnsAsync(false);
             var validator = mockValidator.Object;
 
             var mockMapper = new Mock<IMapper>();
