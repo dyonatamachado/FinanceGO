@@ -1,11 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using FinanceGO.Application.Validators.IRulesValidators;
 using FinanceGO.Application.ViewModels;
 using FinanceGO.Core.Entities;
 using FinanceGO.Core.Repositories.ReceitaRepositories;
 using FinanceGO.Core.Results;
-using FinanceGO.Core.RulesValidators;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.ReceitaCommands.CreateReceita
@@ -25,7 +25,7 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.CreateReceita
 
         public async Task<Result> Handle(CreateReceitaCommand request, CancellationToken cancellationToken)
         {
-            var receitaIsDuplicada = await _validator.ReceitaIsDuplicada(request.Data, request.Descricao, request.UsuarioId);
+            var receitaIsDuplicada = await _validator.ReceitaIsDuplicada(request);
             if(receitaIsDuplicada) return new RegistroDuplicadoResult();
 
             var receita = _mapper.Map<Receita>(request);

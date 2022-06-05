@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using FinanceGO.Application.Validators.IRulesValidators;
 using FinanceGO.Core.Authorization;
 using FinanceGO.Core.Repositories.ReceitaRepositories;
 using FinanceGO.Core.Results;
-using FinanceGO.Core.RulesValidators;
 using MediatR;
 
 namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
@@ -34,7 +34,7 @@ namespace FinanceGO.Application.Commands.ReceitaCommands.UpdateReceita
             var usuarioAutorizado = _requirement.VerificarReceitaMesmoUsuario(receitaASerAlterada);
             if(!usuarioAutorizado) return new UsuarioNaoAutorizadoResult();
 
-            var receitaIsDuplicada = await _validator.ReceitaIsDuplicada(request.Data, request.Descricao, _requirement.GetUserId());
+            var receitaIsDuplicada = await _validator.ReceitaIsDuplicada(request, _requirement.GetUserId());
             if(receitaIsDuplicada) return new RegistroDuplicadoResult();
 
             var receitaComDadosAlterados = _mapper.Map(request, receitaASerAlterada);

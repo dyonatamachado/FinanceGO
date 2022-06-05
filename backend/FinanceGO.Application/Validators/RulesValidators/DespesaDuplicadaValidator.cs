@@ -21,6 +21,9 @@ namespace FinanceGO.Application.Validators.RulesValidators
 
             var possivelDespesaDuplicada = despesasDoMesmoMes.SingleOrDefault(d => d.Descricao == command.Descricao);
 
+            if (possivelDespesaDuplicada == null)
+                return false;
+
             if (possivelDespesaDuplicada.Id == command.Id) 
                 return false;
             else 

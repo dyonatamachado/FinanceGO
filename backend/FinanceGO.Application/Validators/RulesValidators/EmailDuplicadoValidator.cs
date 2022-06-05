@@ -1,9 +1,5 @@
-﻿using FinanceGO.Core.Repositories.UsuarioRepositories;
-using FinanceGO.Core.RulesValidators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using FinanceGO.Application.Validators.IRulesValidators;
+using FinanceGO.Core.Repositories.UsuarioRepositories;
 using System.Threading.Tasks;
 
 namespace FinanceGO.Application.Validators.RulesValidators

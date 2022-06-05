@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinanceGO.Core.RulesValidators
+namespace FinanceGO.Application.Validators.IRulesValidators
 {
     public interface IEmailDuplicadoValidator
     {

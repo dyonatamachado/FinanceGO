@@ -29,7 +29,7 @@ namespace FinanceGO.Application.Commands.DespesaCommands.UpdateDespesa
         public async Task<Result> Handle(UpdateDespesaCommand request, CancellationToken cancellationToken)
         {
             var despesaASerAlterada = await _queryRepository.GetDespesaByIdAsync(request.Id);
-            if(despesaASerAlterada == null) return new RegistroNaoEncontradoResult();
+            if (despesaASerAlterada == null) return new RegistroNaoEncontradoResult();
 
             var usuarioAutorizado = _requirement.VerificarDespesaMesmoUsuario(despesaASerAlterada);
             if(!usuarioAutorizado) return new UsuarioNaoAutorizadoResult();
