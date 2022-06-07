@@ -1,0 +1,49 @@
+.fg-header
+{
+  height: 50px;
+  background-color: var(--fg-bg-darker);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+
+  >.fg-wrapper
+  {
+    width: var(--fg-main-wrapper);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+
+    >.fg-menu
+    {
+
+      >.fg-menu-opcoes-container
+      {
+
+        >.fg-menu-opcoes
+        {
+          margin-left: 20px;
+          display: inline;
+        }
+
+        >.fg-menu-opcoes:hover
+        {
+          font-weight: 500;
+          color: var(--fg-primary);
+        }
+      }
+    }
+
+    >.fg-logo
+    {
+      text-align: center;
+    }
+
+    >.fg-menu-usuario
+    {
+      margin-right: 20px;
+      text-align: right;
+    }
+  }
+}
