@@ -1,0 +1,29 @@
+.fg-card-container
+{
+  background-color: var(--fg-gray);
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0,0,0, 0.6);
+  transition: 0.5s;
+
+  >.fg-card-titulo
+  {
+    margin-right: 10px;
+    font-size: 25px;
+  }
+
+  >.fg-total
+  {
+    margin-top: 60px;
+    margin-right: 10px;
+    font-size: 40px;
+    text-align: right;
+  }
+}
+
+.fg-card-container:hover {
+  transform: scale(1.03);
+  box-shadow: 5px 5px 5px rgba(0,0,0, 0.6);
+
+}

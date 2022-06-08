@@ -1,3 +1,4 @@
+import { DashboardModule } from './DashboardModule/dashboard.module';
 import { HeaderModule } from './HeaderModule/header.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,12 +8,13 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderModule
+    HeaderModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

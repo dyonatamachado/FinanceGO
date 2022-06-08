@@ -1,0 +1,48 @@
+.fg-wrapper {
+  width: var(--fg-main-wrapper);
+  margin: auto;
+
+  >.fg-cards-container
+  {
+    margin: 100px auto;
+
+    >.fg-despesa-receita-saldo-container
+    {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      >.fg-despesa-receita-container
+      {
+        display: inline;
+
+        >.fg-despesa-card-container
+        {
+          margin: 10px;
+        }
+
+        >.fg-receita-card-container
+        {
+          margin: 10px;
+        }
+      }
+
+      >.fg-saldo-container
+      {
+
+        >.fg-saldo-card-container
+        {
+          margin: 10px;
+        }
+      }
+    }
+
+    >.fg-grafico-container
+    {
+      margin-top: 20px;
+    }
+  }
+}
+
+
+
+
