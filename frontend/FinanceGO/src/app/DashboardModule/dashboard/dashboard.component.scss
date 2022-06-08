@@ -9,15 +9,16 @@
     >.fg-despesa-receita-saldo-container
     {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1.8fr;
+      column-gap: 15px;
 
       >.fg-despesa-receita-container
       {
-        display: inline;
 
         >.fg-despesa-card-container
         {
           margin: 10px;
+
         }
 
         >.fg-receita-card-container

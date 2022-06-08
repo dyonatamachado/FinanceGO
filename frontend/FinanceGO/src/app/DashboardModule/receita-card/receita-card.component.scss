@@ -1,7 +1,7 @@
 .fg-card-container
 {
-  background-color: var(--fg-bg-despesa-card);
-  color: var(--fg-primary-despesa-card);
+  background-color: var(--fg-bg-receita-card);
+  color: var(--fg-primary-receita-card);
   padding: 10px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgba(0,0,0, 0.6);
@@ -25,4 +25,5 @@
 .fg-card-container:hover {
   transform: scale(1.03);
   box-shadow: 5px 5px 5px rgba(0,0,0, 0.6);
+
 }
